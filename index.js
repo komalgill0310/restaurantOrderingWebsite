@@ -17,4 +17,5 @@ function renderMenuArray() {
   });
 }
 
+console.log("hello!");
 renderMenuArray();
