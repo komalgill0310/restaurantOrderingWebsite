@@ -28,3 +28,7 @@ h1 {
   border: 1px solid red;
   justify-content: space-around;
 }
+
+.your-order-text {
+  display: none;
+}
