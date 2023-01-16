@@ -1,21 +1,29 @@
 import { menuArray } from "/data.js";
 
-const menuItems = document.getElementById("menu-items");
+document.addEventListener("click", (e) => {
+  if (e.target.dataset.add) {
+    console.log(e.target.dataset.add);
+  }
+});
 
-function renderMenuArray() {
-  return menuArray.forEach((menu) => {
-    return (menuItems.innerHTML += `
-      <p>${menu.emoji}</p>
-      <div class="item-info">
-        <h1>${menu.name}</h1>
-        <p>${menu.ingredients}</p>
-        <p>${menu.price}</p>
-      </div>
-      <div class="add-item-btn">
-        <button>+</button>
-      </div>`);
+function getMenuItems() {
+  let menuHtml = "";
+  menuArray.forEach((menu) => {
+    menuHtml += `<p>${menu.emoji}</p>
+    <div class="item-info">
+      <h1>${menu.name}</h1>
+      <p>${menu.ingredients}</p>
+      <p>${menu.price}</p>
+    </div>
+    <div classs="add-item-btn">
+      <button data-add="${menu.id}">+</button>      
+  </div>`;
   });
+  return menuHtml;
 }
 
-console.log("hello!");
+function renderMenuArray() {
+  document.getElementById("menu-items").innerHTML = getMenuItems();
+}
+
 renderMenuArray();
