@@ -8,7 +8,9 @@ document.addEventListener("click", (e) => {
 
 function handleAddItemClick(menuId) {
   console.log(menuId);
-  document.querySelector(".your-order-text").style.display = "block";
+  document.querySelector(".ordered-items").style.display = "block";
+  document.querySelector(".place-order-btn").style.display = "block";
+
   const orderedItems = document.getElementById("ordered-items");
   orderedItems.innerHTML += `
   <h1>${menuArray[menuId].name}</h1>
