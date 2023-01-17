@@ -4,24 +4,62 @@ document.addEventListener("click", (e) => {
   if (e.target.dataset.add) {
     handleAddItemClick(e.target.dataset.add);
   }
+  if (e.target.dataset.remove) {
+    removeItemFromCart(e.target.dataset.remove);
+  }
 });
 
 function handleAddItemClick(menuId) {
   document.querySelector(".pre-checkout-state").style.display = "block";
-  document.getElementById("ordered-items").innerHTML += `
-  <h1>${menuArray[menuId].name}</h1>
-  <p>$${menuArray[menuId].price}</p>`;
+  renderOrderedItems(menuId);
   document.getElementById(
     "total-price"
   ).textContent = `Total Price: $${getTotalPrice(menuId)}`;
 }
 
-let orderItemsPrice = [];
+function renderOrderedItems(menuId) {
+  document.getElementById("ordered-items").innerHTML = getMenuItemsHtml(menuId);
+}
+
+function getMenuItemsHtml(menuId) {
+  let cartItemHtml = "";
+
+  const itemsAddedToCart = getOrderedItems(menuId);
+  itemsAddedToCart.forEach((item) => {
+    cartItemHtml += `
+    <h1>${item.name}</h1>
+    <p>$${item.price}</p>
+    <button data-remove="${menuId}">Remove</button>`;
+  });
+  return cartItemHtml;
+}
+
+function getOrderedItems(menuId) {
+  let orderItem = {
+    name: menuArray[menuId].name,
+    price: menuArray[menuId].price,
+  };
+  orderedItems.push(orderItem);
+  return orderedItems;
+}
 
 function getTotalPrice(menuId) {
-  orderItemsPrice.push(menuArray[menuId].price);
-  return orderItemsPrice.reduce((a, c) => a + c, 0);
+  const orderItemsPrice = getOrderedItems(menuId);
+  console.log(orderItemsPrice);
+  const sum = orderItemsPrice.reduce(
+    (totalPrice, itemPrice) => totalPrice + itemPrice.price,
+    0
+  );
+  console.log("sum: ", sum);
+  // orderItemsPrice.push(menuArray[menuId].price);
+  // return orderItemsPrice.reduce((a, c) => a + c, 0);
 }
+
+function removeItemFromCart(menuId) {
+  console.log("clicked!", menuId);
+}
+
+let orderedItems = [];
 
 function getMenuItems() {
   let menuHtml = "";
