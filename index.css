@@ -29,18 +29,6 @@ h1 {
   justify-content: space-around;
 }
 
-.ordered-items {
+.pre-checkout-state {
   display: none;
 }
-
-.place-order-btn {
-  display: none;
-}
-
-/* .your-order-text {
-  display: none;
-}
-
-.complete-order-btn {
-  display: none;
-} */

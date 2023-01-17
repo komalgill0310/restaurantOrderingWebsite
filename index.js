@@ -7,14 +7,20 @@ document.addEventListener("click", (e) => {
 });
 
 function handleAddItemClick(menuId) {
-  console.log(menuId);
-  document.querySelector(".ordered-items").style.display = "block";
-  document.querySelector(".place-order-btn").style.display = "block";
-
-  const orderedItems = document.getElementById("ordered-items");
-  orderedItems.innerHTML += `
+  document.querySelector(".pre-checkout-state").style.display = "block";
+  document.getElementById("ordered-items").innerHTML += `
   <h1>${menuArray[menuId].name}</h1>
   <p>$${menuArray[menuId].price}</p>`;
+  document.getElementById(
+    "total-price"
+  ).textContent = `Total Price: $${getTotalPrice(menuId)}`;
+}
+
+let orderItemsPrice = [];
+
+function getTotalPrice(menuId) {
+  orderItemsPrice.push(menuArray[menuId].price);
+  return orderItemsPrice.reduce((a, c) => a + c, 0);
 }
 
 function getMenuItems() {
