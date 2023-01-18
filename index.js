@@ -5,7 +5,8 @@ document.addEventListener("click", (e) => {
     handleAddItemClick(e.target.dataset.add);
   }
   if (e.target.dataset.remove) {
-    removeItemFromCart(e.target.dataset.remove);
+    handleRemoveItemClick(e.target.dataset.remove);
+    console.log("event: ", orderedItems);
   }
 });
 
@@ -17,6 +18,10 @@ function handleAddItemClick(menuId) {
   ).textContent = `Total Price: $${getTotalPrice()}`;
 }
 
+function handleRemoveItemClick(menuId) {
+  removeItemFromCart(menuId);
+}
+
 function renderOrderedItems(menuId) {
   document.getElementById("ordered-items").innerHTML +=
     getMenuItemsHtml(menuId);
@@ -26,6 +31,7 @@ function getMenuItemsHtml(menuId) {
   let cartItemHtml = "";
 
   const itemsAddedToCart = getOrderedItems(menuId);
+  console.log("cartItems: ", itemsAddedToCart);
   itemsAddedToCart.forEach((item) => {
     cartItemHtml = `
     <h1>${item.name}</h1>
@@ -41,6 +47,7 @@ function getOrderedItems(menuId) {
   let orderItem = {
     name: menuArray[menuId].name,
     price: menuArray[menuId].price,
+    id: menuId,
   };
   orderedItems.push(orderItem);
   return orderedItems;
@@ -54,7 +61,13 @@ function getTotalPrice() {
 }
 
 function removeItemFromCart(menuId) {
-  console.log("clicked!", menuId);
+  for (let i = 0; i < orderedItems.length; i++) {
+    if (orderedItems[i].id === menuId) {
+      orderedItems.splice(i, 1);
+    }
+  }
+  console.log("removeSplice: ", orderedItems);
+  return orderedItems;
 }
 
 function getMenuItems() {
