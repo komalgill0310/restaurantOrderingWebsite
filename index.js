@@ -61,12 +61,15 @@ function getTotalPrice() {
 }
 
 function removeItemFromCart(menuId) {
-  for (let i = 0; i < orderedItems.length; i++) {
-    if (orderedItems[i].id === menuId) {
-      orderedItems.splice(i, 1);
-    }
-  }
-  console.log("removeSplice: ", orderedItems);
+  // for (let i = 0; i < orderedItems.length; i++) {
+  //   if (orderedItems[i].id === menuId) {
+  //     orderedItems.splice(i, 1);
+  //   }
+  // }
+  const filter = orderedItems.filter((item) => item.id != menuId);
+  orderedItems = filter;
+  console.log("removeSplice: ", filter);
+  console.log("orderItems: ", orderedItems);
   return orderedItems;
 }
 
