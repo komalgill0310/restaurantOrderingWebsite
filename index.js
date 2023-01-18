@@ -14,11 +14,12 @@ function handleAddItemClick(menuId) {
   renderOrderedItems(menuId);
   document.getElementById(
     "total-price"
-  ).textContent = `Total Price: $${getTotalPrice(menuId)}`;
+  ).textContent = `Total Price: $${getTotalPrice()}`;
 }
 
 function renderOrderedItems(menuId) {
-  document.getElementById("ordered-items").innerHTML = getMenuItemsHtml(menuId);
+  document.getElementById("ordered-items").innerHTML +=
+    getMenuItemsHtml(menuId);
 }
 
 function getMenuItemsHtml(menuId) {
@@ -26,13 +27,15 @@ function getMenuItemsHtml(menuId) {
 
   const itemsAddedToCart = getOrderedItems(menuId);
   itemsAddedToCart.forEach((item) => {
-    cartItemHtml += `
+    cartItemHtml = `
     <h1>${item.name}</h1>
     <p>$${item.price}</p>
     <button data-remove="${menuId}">Remove</button>`;
   });
   return cartItemHtml;
 }
+
+let orderedItems = [];
 
 function getOrderedItems(menuId) {
   let orderItem = {
@@ -43,23 +46,16 @@ function getOrderedItems(menuId) {
   return orderedItems;
 }
 
-function getTotalPrice(menuId) {
-  const orderItemsPrice = getOrderedItems(menuId);
-  console.log(orderItemsPrice);
-  const sum = orderItemsPrice.reduce(
+function getTotalPrice() {
+  return orderedItems.reduce(
     (totalPrice, itemPrice) => totalPrice + itemPrice.price,
     0
   );
-  console.log("sum: ", sum);
-  // orderItemsPrice.push(menuArray[menuId].price);
-  // return orderItemsPrice.reduce((a, c) => a + c, 0);
 }
 
 function removeItemFromCart(menuId) {
   console.log("clicked!", menuId);
 }
-
-let orderedItems = [];
 
 function getMenuItems() {
   let menuHtml = "";
