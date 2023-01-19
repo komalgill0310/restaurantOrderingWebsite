@@ -1,36 +1,36 @@
 import { menuArray } from "/data.js";
 
+let orderedItems = [];
+
 document.addEventListener("click", (e) => {
   if (e.target.dataset.add) {
-    handleAddItemClick(e.target.dataset.add);
+    handleAddItemClick(e.target.dataset.add, e);
   }
   if (e.target.dataset.remove) {
-    handleRemoveItemClick(e.target.dataset.remove);
+    handleRemoveItemClick(e.target.dataset.remove, e);
     console.log("event: ", orderedItems);
   }
 });
 
-function handleAddItemClick(menuId) {
+function handleAddItemClick(addMenuId, e) {
   document.querySelector(".pre-checkout-state").style.display = "block";
-  renderOrderedItems(menuId);
-  document.getElementById(
-    "total-price"
-  ).textContent = `Total Price: $${getTotalPrice()}`;
+  renderOrderedItems(addMenuId, e);
+  // document.getElementById(
+  //   "total-price"
+  // ).textContent = `Total Price: $${getTotalPrice()}`;
 }
 
-function handleRemoveItemClick(menuId) {
-  removeItemFromCart(menuId);
+function renderOrderedItems(menuId, e) {
+  document.getElementById("ordered-items").innerHTML += getMenuItemsHtml(
+    menuId,
+    e
+  );
 }
 
-function renderOrderedItems(menuId) {
-  document.getElementById("ordered-items").innerHTML +=
-    getMenuItemsHtml(menuId);
-}
-
-function getMenuItemsHtml(menuId) {
+function getMenuItemsHtml(menuId, e) {
   let cartItemHtml = "";
 
-  const itemsAddedToCart = getOrderedItems(menuId);
+  const itemsAddedToCart = getOrderedItems(menuId, e);
   console.log("cartItems: ", itemsAddedToCart);
   itemsAddedToCart.forEach((item) => {
     cartItemHtml = `
@@ -41,35 +41,47 @@ function getMenuItemsHtml(menuId) {
   return cartItemHtml;
 }
 
-let orderedItems = [];
-
-function getOrderedItems(menuId) {
-  let orderItem = {
-    name: menuArray[menuId].name,
-    price: menuArray[menuId].price,
-    id: menuId,
-  };
-  orderedItems.push(orderItem);
-  return orderedItems;
+function getOrderedItems(menuId, e) {
+  if (menuId === e.target.dataset.add) {
+    let orderItem = {
+      name: menuArray[menuId].name,
+      price: menuArray[menuId].price,
+      id: menuId,
+    };
+    orderedItems.push(orderItem);
+    console.log("addItem: ", orderedItems);
+    return orderedItems;
+  }
+  if (menuId === e.target.dataset.remove) {
+    console.log("removeItem: ", orderedItems);
+    return orderedItems;
+  }
 }
 
-function getTotalPrice() {
-  return orderedItems.reduce(
-    (totalPrice, itemPrice) => totalPrice + itemPrice.price,
-    0
-  );
+// function getTotalPrice() {
+//   return orderedItems.reduce(
+//     (totalPrice, itemPrice) => totalPrice + itemPrice.price,
+//     0
+//   );
+// }
+
+function handleRemoveItemClick(removeMenuId, e) {
+  removeItemFromCart(removeMenuId);
+  renderOrderedItems(removeMenuId, e);
 }
 
-function removeItemFromCart(menuId) {
-  // for (let i = 0; i < orderedItems.length; i++) {
-  //   if (orderedItems[i].id === menuId) {
-  //     orderedItems.splice(i, 1);
-  //   }
-  // }
-  const filter = orderedItems.filter((item) => item.id != menuId);
-  orderedItems = filter;
-  console.log("removeSplice: ", filter);
-  console.log("orderItems: ", orderedItems);
+function removeItemFromCart(removeMenuId) {
+  // const filter = orderedItems.filter((item) => item.id != removeMenuId);
+  // orderedItems = filter;
+  // console.log("filter: ", filter);
+  // console.log("orderItems: ", orderedItems);
+  // return orderedItems;
+  for (let i = 0; i < orderedItems.length; i++) {
+    if (orderedItems[i].id === removeMenuId) {
+      orderedItems.splice(i, 1);
+    }
+  }
+  console.log("removeSplice: ", orderedItems);
   return orderedItems;
 }
 
