@@ -56,3 +56,46 @@ How to remove an item from the DOM when user click on the "remove" button
 - Inside renderOrderItem(), _Logic is:_
   1. Whatever the HTML is already there, display that HTML and also display whatever the output you get from calling getMenuItemsHtml
      **Work on this logic => so that only the item which user wish to delete, gets deleted and rest of the DOM, stays the way it is.**
+
+**What is the end goal which I would like to achieve?**
+
+1. When user click on Remove button for the added item in the cart, only that item gets deleted and rest of the items stays the way they are in the DOM.
+
+- Expected Behaviour:
+
+  - e.g.: Current cart items are:
+    1. Pizza
+    2. Beer
+
+- Actual Behaviour: User want to delete Pizza from their order.
+  - e.g.: after deleting cart items are:
+    1. Beer
+
+However, if let's say there are more than two items then the behaviour is unexpected.
+
+- e.g.: User has three items in their cart.
+  1. Pizza
+  2. Beer
+  3. burger
+
+User wish to delete only Burger from their order.
+
+- Expected Behaviour:
+
+  - Cart should has two items left
+    1. Pizza
+    2. Beer
+
+- Actual Behaviour:
+  - Cart is only left with one item.
+    1. Beer (the item which was added after Pizza)
+
+**Solution for the issue is:**
+
+1. give an id to the remove button
+2. In an "click" eventListener for the document
+
+   - Check if the remove button was clicked
+     1. get a hold of the remove button
+     2. use **parentElement** property of an HTML element
+     - then call **remove()** method on the parent element of that Clicked _Remove button_, and that element will get deleted from the DOM.
