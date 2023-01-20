@@ -99,3 +99,23 @@ User wish to delete only Burger from their order.
      1. get a hold of the remove button
      2. use **parentElement** property of an HTML element
      - then call **remove()** method on the parent element of that Clicked _Remove button_, and that element will get deleted from the DOM.
+
+**Next Step:**
+Calculate the total price of the added items in the cart.
+
+- _Steps:_
+
+  1. create an element in HTML which will display the total price
+  2. create a function in JS, which will calculate the total price for the added items.
+
+- **Aside:**
+  1. orderedItems array is created at global level
+     - Either an item has been added or removed from the cart, the array should get updated.
+       **How to?**
+       - Breakdown =>
+         1. How to add =>
+         - If user click on an ADD button =>
+           1. create a new object with the item's name and item's price
+           2. push that object into an array.
+         - If user click on REMOVE button =>
+           1. How to delete that object from an array and change the original array.

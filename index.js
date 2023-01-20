@@ -5,8 +5,8 @@ document.addEventListener("click", (e) => {
     handleAddItemClick(e.target.dataset.add, e);
   }
   if (e.target.dataset.remove) {
-    // handleRemoveItemClick(e.target.dataset.remove, e);
-    document.getElementById(e.target.id).parentElement.remove();
+    handleRemoveItemClick(e.target.id);
+    // document.getElementById(e.target.id).parentElement.remove();
   }
 });
 
@@ -56,25 +56,31 @@ function getOrderedItems(menuId, e) {
 }
 
 // function getTotalPrice() {
-//   const arr = removeItemFromCart(removeMenuId);
-//   return arr.reduce((totalPrice, itemPrice) => totalPrice + itemPrice.price, 0);
+//   const arr = removeDeleteItemFromOrderedItems(removeElement);
+//   console.log(arr);
+// return arr.reduce((totalPrice, itemPrice) => totalPrice + itemPrice.price, 0);
 // }
 
-// function handleRemoveItemClick(removeMenuId) {
-//   removeItemFromCart(removeMenuId);
-//   //   renderOrderedItems(removeMenuId, e);
-// }
+// getTotalPrice();
 
-// function removeItemFromCart(removeMenuId) {
-//   // const filter = orderedItems.filter((item) => item.id != removeMenuId);
-//   // return orderedItems;
-//   for (let i = 0; i < orderedItems.length; i++) {
-//     if (orderedItems[i].id === removeMenuId) {
-//       orderedItems.splice(i, 1);
-//     }
-//   }
-//   return orderedItems;
-// }
+function handleRemoveItemClick(removeElement) {
+  document.getElementById(removeElement).parentElement.remove();
+  removeDeleteItemFromOrderedItems(removeElement);
+}
+
+function removeDeleteItemFromOrderedItems(removeElement) {
+  //   // const filter = orderedItems.filter((item) => item.id != removeMenuId);
+  //   // return orderedItems;
+  for (let i = 0; i < orderedItems.length; i++) {
+    if (orderedItems[i].id === removeElement) {
+      orderedItems.splice(i, 1);
+    }
+  }
+  console.log(orderedItems);
+  return orderedItems;
+}
+
+removeDeleteItemFromOrderedItems(removeElement);
 
 function getMenuItems() {
   let menuHtml = "";
