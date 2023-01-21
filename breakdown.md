@@ -119,3 +119,12 @@ Calculate the total price of the added items in the cart.
            2. push that object into an array.
          - If user click on REMOVE button =>
            1. How to delete that object from an array and change the original array.
+           - Check if the object's id === id of the clicked button
+             - delete that object from an array using spice method which will mutate the original array
+
+**How to update the DOM, when the array of object gets changed?**
+
+1.  Get a hold of the element which displays the total price
+2.  update the text content of that element by calling the "getTotalPrice()" function
+
+- update the text content either the item has been added to the cart or it has been removed.
