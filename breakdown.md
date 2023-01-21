@@ -126,5 +126,4 @@ Calculate the total price of the added items in the cart.
 
 1.  Get a hold of the element which displays the total price
 2.  update the text content of that element by calling the "getTotalPrice()" function
-
-- update the text content either the item has been added to the cart or it has been removed.
+    - update the text content either the item has been added to the cart or it has been removed.
