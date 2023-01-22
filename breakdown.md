@@ -1,12 +1,12 @@
 How to render the ordered items on the DOM, when user click on "+" button
 
 1. What needs to update in HTML in order to display the item which user wish to order.
-   - Ordered-items div inside a main section
+   - Ordered-items div inside a section which has a class of "pre-checkout-state"
      1. How to update the HTML of the pre-checkout-state's section.
         - Breakdown:
           1. Attach an EventListener to the entire document
              1. First Detect if the "+" button was clicked.
-                - Give a data-attribute the "+" button
+                - Give a data-attribute to the "+" button
                 - Check if the data-attribute of a clicked button is data-attribute' name
                   1. Call handleAddItemClick(data-attribute's name)
                      - this function will update the display property to "Block" level of pre-checkout-state
