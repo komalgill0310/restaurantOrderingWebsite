@@ -49,10 +49,17 @@
             <button class="modal-checkout-payment-close-btn" id="modal-checkout-payment-close-btn" data-close="close-payment-modal">X</button>
           </div>
 
-            <input type="text" placeholder="Enter your name">
-            <input type="text" placeholder="Enter card number">
-            <input type="text" placeholder="Enter CVV">
-            <button type="button" data-pay="pay">Pay</button>
+            <input type="text" 
+            id="name"
+            placeholder="Enter your name"                   required />
+            <input type="text"   
+            id="card-number"
+            placeholder="Enter card number"                     required />
+            <input type="text" 
+            id="cvv"       
+            placeholder="Enter CVV"
+            required />
+            <button type="submit" data-pay="pay">Pay</button>
           </form>
 
         </div>

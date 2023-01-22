@@ -18,13 +18,24 @@ document.addEventListener("click", (e) => {
   if (e.target.dataset.close) {
     document.querySelector(".payment-information").style.display = "none";
   }
-  if (e.target.dataset.pay) {
+
+  if (e.target.dataset.pay && validateForm()) {
     document.querySelector(".order-complete-state").style.display = "block";
     document.querySelector(".pre-checkout-state").style.display = "none";
     document.querySelector(".checkout-payment-modal-state").style.display =
       "none";
   }
 });
+
+function validateForm() {
+  if (
+    !document.getElementById("name").value ||
+    !document.getElementById("card-number").value ||
+    !document.getElementById("cvv").value
+  ) {
+    alert("Please fill out the payment information");
+  }
+}
 
 function handleAddItemClick(menuId) {
   renderOrderedItems(menuId);
