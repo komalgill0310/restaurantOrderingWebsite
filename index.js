@@ -67,24 +67,26 @@ function getTotalPrice() {
   );
 }
 
-function handleRemoveItemClick(removeElement) {
-  document.getElementById(removeElement).parentElement.remove();
-  removeDeleteItemFromOrderedItems(removeElement);
+function handleRemoveItemClick(deleteBtnId) {
+  deleteElementFromDom(deleteBtnId);
+  deleteItemFromOrderedItemsArray(deleteBtnId);
   setHtmlContentForTotalPrice();
   updateDisplayPropertyOfPreCheckoutHtmlSection();
 }
 
-function removeDeleteItemFromOrderedItems(removeElement) {
+function deleteElementFromDom(deleteBtnId) {
+  document.getElementById(deleteBtnId).parentElement.remove();
+}
+
+function deleteItemFromOrderedItemsArray(deleteBtnId) {
   for (let i = 0; i < orderedItems.length; i++) {
-    if (orderedItems[i].id === removeElement) {
+    if (orderedItems[i].id === deleteBtnId) {
       orderedItems.splice(i, 1);
     }
   }
-  console.log(orderedItems);
   return orderedItems;
 }
 
-//Render Menu Items on the DOM
 renderMenuItems();
 
 function renderMenuItems() {
