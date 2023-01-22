@@ -9,12 +9,23 @@ document.addEventListener("click", (e) => {
   if (e.target.dataset.remove) {
     handleRemoveItemClick(e.target.id);
   }
+  if (e.target.dataset.complete) {
+    document.querySelector(".checkout-payment-modal-state").style.display =
+      "block";
+  }
 });
 
 function handleAddItemClick(menuId) {
   renderOrderedItems(menuId);
   updateDisplayPropertyOfPreCheckoutHtmlSection();
   setHtmlContentForTotalPrice();
+}
+
+function handleRemoveItemClick(deleteBtnId) {
+  deleteElementFromDom(deleteBtnId);
+  deleteItemFromOrderedItemsArray(deleteBtnId);
+  setHtmlContentForTotalPrice();
+  updateDisplayPropertyOfPreCheckoutHtmlSection();
 }
 
 function renderOrderedItems(menuId) {
@@ -65,13 +76,6 @@ function getTotalPrice() {
     (totalPrice, itemPrice) => totalPrice + itemPrice.price,
     0
   );
-}
-
-function handleRemoveItemClick(deleteBtnId) {
-  deleteElementFromDom(deleteBtnId);
-  deleteItemFromOrderedItemsArray(deleteBtnId);
-  setHtmlContentForTotalPrice();
-  updateDisplayPropertyOfPreCheckoutHtmlSection();
 }
 
 function deleteElementFromDom(deleteBtnId) {
