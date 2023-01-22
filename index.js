@@ -88,24 +88,25 @@ function removeDeleteItemFromOrderedItems(removeElement) {
   return orderedItems;
 }
 
-function getMenuItems() {
-  let menuHtml = "";
-  menuArray.forEach((menu) => {
-    menuHtml += `<p>${menu.emoji}</p>
-    <div class="item-info">
-      <h1>${menu.name}</h1>
-      <p>${menu.ingredients}</p>
-      <p>$${menu.price}</p>
-    </div>
-    <div classs="add-item-btn">
-      <button data-add="${menu.id}">+</button>      
-  </div>`;
-  });
-  return menuHtml;
-}
+//Render Menu Items on the DOM
+renderMenuItems();
 
-function renderMenuArray() {
+function renderMenuItems() {
   document.getElementById("menu-items").innerHTML = getMenuItems();
 }
 
-renderMenuArray();
+function getMenuItems() {
+  let menuItemHtml = "";
+  menuArray.forEach((menuItem) => {
+    menuItemHtml += `<p>${menuItem.emoji}</p>
+    <div class="item-info">
+      <h1>${menuItem.name}</h1>
+      <p>${menuItem.ingredients}</p>
+      <p>$${menuItem.price}</p>
+    </div>
+    <div classs="add-to-cart-btn">
+      <button data-add="${menuItem.id}">+</button>      
+  </div>`;
+  });
+  return menuItemHtml;
+}
