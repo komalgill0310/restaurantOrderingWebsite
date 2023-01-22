@@ -3,6 +3,7 @@ import { menuArray } from "/data.js";
 let orderedItems = [];
 
 document.addEventListener("click", (e) => {
+  e.preventDefault();
   if (e.target.dataset.add) {
     handleAddItemClick(e.target.dataset.add);
   }
@@ -12,6 +13,16 @@ document.addEventListener("click", (e) => {
   if (e.target.dataset.complete) {
     document.querySelector(".checkout-payment-modal-state").style.display =
       "block";
+    document.querySelector(".payment-information").style.display = "block";
+  }
+  if (e.target.dataset.close) {
+    document.querySelector(".payment-information").style.display = "none";
+  }
+  if (e.target.dataset.pay) {
+    document.querySelector(".order-complete-state").style.display = "block";
+    document.querySelector(".pre-checkout-state").style.display = "none";
+    document.querySelector(".checkout-payment-modal-state").style.display =
+      "none";
   }
 });
 

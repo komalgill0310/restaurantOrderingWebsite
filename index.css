@@ -42,11 +42,14 @@ form {
   right: 0;
   height: 543px;
   width: 524px;
-  display: none;
 }
 
 input {
   margin: 12px;
   padding: 17px;
   display: block;
+}
+
+.order-complete-state {
+  display: none;
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,7 +8,9 @@
     <link rel="stylesheet" href="index.css" />
     <title>Restaurant Ordering App</title>
   </head>
+
   <body>
+
     <div class="container">
       <header class="pizza-burger-img">
         <h1>Jimmy's Diner</h1>
@@ -38,13 +41,27 @@
       </section>
 
       <section class="checkout-payment-modal-state">
-        <form>
-          <input type="text" placeholder="Enter your name">
-          <input type="text" placeholder="Enter card number">
-          <input type="text" placeholder="Enter CVV">
-          <button type="button">Pay</button>
-        </form>
-    </div>
+
+        <div class="payment-information" id="payment-information">   
+
+          <form>                  
+          <div class="close-modal-btn-container">
+            <button class="modal-checkout-payment-close-btn" id="modal-checkout-payment-close-btn" data-close="close-payment-modal">X</button>
+          </div>
+
+            <input type="text" placeholder="Enter your name">
+            <input type="text" placeholder="Enter card number">
+            <input type="text" placeholder="Enter CVV">
+            <button type="button" data-pay="pay">Pay</button>
+          </form>
+
+        </div>
+
+      </section>
+
+      <section class="order-complete-state">
+        <h1>Thanks, XYZ! Your order is on its way!</h1>
+      </section>
 
     <script src="index.js" type="module"></script>
   </body>
