@@ -29,3 +29,24 @@ h1 {
 .checkout-payment-modal-state {
   display: none;
 }
+
+form {
+  border: 2px solid red;
+  display: inline-block;
+  background-color: pink;
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 543px;
+  width: 524px;
+  display: none;
+}
+
+input {
+  margin: 12px;
+  padding: 17px;
+  display: block;
+}
