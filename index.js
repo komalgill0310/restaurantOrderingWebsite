@@ -1,4 +1,5 @@
 import { menuArray } from "/data.js";
+import { htmlElementObj } from "/htmlElementObject.js";
 
 let orderedItems = [];
 
@@ -14,22 +15,14 @@ function init() {
       handleRemoveItemClick(e.target.id);
     }
     if (e.target.dataset.complete) {
-      document.querySelector(".checkout-payment-modal-state").style.display =
-        "block";
-      document.querySelector(".payment-information").style.display = "block";
+      htmlElementObj.checkoutPaymentModalState.style.display = "block";
+      htmlElementObj.paymentInformation.style.display = "block";
     }
     if (e.target.dataset.close) {
-      document.querySelector(".payment-information").style.display = "none";
+      htmlElementObj.paymentInformation.style.display = "none";
     }
-    if (e.target.dataset.pay && !validateForm()) {
-      console.log("testing");
-      document.querySelector(".order-complete-state").style.display = "block";
-      document.querySelector(".pre-checkout-state").style.display = "none";
-      document.querySelector(".checkout-payment-modal-state").style.display =
-        "none";
-      document.getElementById("order-on-the-way").innerHTML = `Thanks ${
-        document.getElementById("name").value
-      }! Your order is on the way!`;
+    if (e.target.dataset.pay) {
+      validateForm();
     }
   });
 }
@@ -41,6 +34,13 @@ function validateForm() {
     !document.getElementById("cvv").value
   ) {
     alert("Please fill out the payment information");
+  } else {
+    htmlElementObj.orderCompleteState.style.display = "block";
+    htmlElementObj.preCheckoutState.style.display = "none";
+    htmlElementObj.checkoutPaymentModalState.style.display = "none";
+    htmlElementObj.orderOnTheWay.innerHTML = `Thanks ${
+      document.getElementById("name").value
+    }! Your order is on the way!`;
   }
 }
 
@@ -141,3 +141,43 @@ function getMenuItems() {
   });
   return menuItemHtml;
 }
+
+// function init() {
+//   document.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     if (e.target.dataset.add) {
+//       handleAddItemClick(e.target.dataset.add);
+//     }
+//     if (e.target.dataset.remove) {
+//       handleRemoveItemClick(e.target.id);
+//     }
+//     if (e.target.dataset.complete) {
+//       htmlElementObj.checkoutPaymentModalState.style.display = "block";
+//       htmlElementObj.paymentInformation.style.display = "block";
+// document.querySelector(".checkout-payment-modal-state").style.display =
+//   "block";
+// document.querySelector(".payment-information").style.display = "block";
+// }
+// if (e.target.dataset.close) {
+//   htmlElementObj.paymentInformation.style.display = "none";
+//   // document.querySelector(".payment-information").style.display = "none";
+// }
+// if (e.target.dataset.pay && !validateForm()) {
+//   htmlElementObj.orderCompleteState.style.display = "block";
+//   htmlElementObj.preCheckoutState.style.display = "none";
+//   htmlElementObj.checkoutPaymentModalState.style.display = "none";
+//   htmlElementObj.orderOnTheWay.innerHTML = `Thanks ${
+//     document.getElementById("name").value
+//   }! Your order is on the way!`;
+// }
+//   document.getElementById("name").value
+// }! Your order is on the way!`;;
+// document.querySelector(".order-complete-state").style.display = "block";
+// document.querySelector(".pre-checkout-state").style.display = "none";
+// document.querySelector(".checkout-payment-modal-state").style.display =
+//   "none";
+// document.getElementById("order-on-the-way").innerHTML = `Thanks ${
+//   document.getElementById("name").value
+// }! Your order is on the way!`;
+//   });
+// }
