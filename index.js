@@ -2,30 +2,37 @@ import { menuArray } from "/data.js";
 
 let orderedItems = [];
 
-document.addEventListener("click", (e) => {
-  e.preventDefault();
-  if (e.target.dataset.add) {
-    handleAddItemClick(e.target.dataset.add);
-  }
-  if (e.target.dataset.remove) {
-    handleRemoveItemClick(e.target.id);
-  }
-  if (e.target.dataset.complete) {
-    document.querySelector(".checkout-payment-modal-state").style.display =
-      "block";
-    document.querySelector(".payment-information").style.display = "block";
-  }
-  if (e.target.dataset.close) {
-    document.querySelector(".payment-information").style.display = "none";
-  }
+init();
 
-  if (e.target.dataset.pay && validateForm()) {
-    document.querySelector(".order-complete-state").style.display = "block";
-    document.querySelector(".pre-checkout-state").style.display = "none";
-    document.querySelector(".checkout-payment-modal-state").style.display =
-      "none";
-  }
-});
+function init() {
+  document.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (e.target.dataset.add) {
+      handleAddItemClick(e.target.dataset.add);
+    }
+    if (e.target.dataset.remove) {
+      handleRemoveItemClick(e.target.id);
+    }
+    if (e.target.dataset.complete) {
+      document.querySelector(".checkout-payment-modal-state").style.display =
+        "block";
+      document.querySelector(".payment-information").style.display = "block";
+    }
+    if (e.target.dataset.close) {
+      document.querySelector(".payment-information").style.display = "none";
+    }
+    if (e.target.dataset.pay && !validateForm()) {
+      console.log("testing");
+      document.querySelector(".order-complete-state").style.display = "block";
+      document.querySelector(".pre-checkout-state").style.display = "none";
+      document.querySelector(".checkout-payment-modal-state").style.display =
+        "none";
+      document.getElementById("order-on-the-way").innerHTML = `Thanks ${
+        document.getElementById("name").value
+      }! Your order is on the way!`;
+    }
+  });
+}
 
 function validateForm() {
   if (
