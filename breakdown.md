@@ -1,129 +1,55 @@
-How to render the ordered items on the DOM, when user click on "+" button
+**Render more food items on page**
 
-1. What needs to update in HTML in order to display the item which user wish to order.
-   - Ordered-items div inside a section which has a class of "pre-checkout-state"
-     1. How to update the HTML of the pre-checkout-state's section.
-        - Breakdown:
-          1. Attach an EventListener to the entire document
-             1. First Detect if the "+" button was clicked.
-                - Give a data-attribute to the "+" button
-                - Check if the data-attribute of a clicked button is data-attribute' name
-                  1. Call handleAddItemClick(data-attribute's name)
-                     - this function will update the display property to "Block" level of pre-checkout-state
-                     - Call renderOrderedItems(data-attribute's name)
-                       1. This function will update the HTMl of the div of id = Ordered-items
-                       - It will call another function => getMenuItemsHtml(data-attribute's name)
-                         1. this function will create an empty string
-                         2. Call another function => getOrderedItems(data-attribute's name)
-                         - loop through a returned array of object from getOrderedItem()
-                           1. Store that data into a empty string variable locally
-                           2. Return that string variable
-                         - this function will create an object for the item which user would like to place an order for.
-                           - Obj = {
-                             name: name of the item,
-                             price: price of the item,
-                             id: data-attribute's value
-                             }
-                         - Create an empty array at global level
-                         - push that object to an array
-                         - return that array
+1. Update the data.js file with the food items.✅
 
-How to remove an item from the DOM when user click on the "remove" button
+**Next Goal:**
 
-1. First Detect if the "remove" button was clicked using the data-attribute's name
+1. Create three div on page✅
 
-   - handleRemoveItemclick(data-attribute's name)
-     1. This function will call another function => removeItemFromCart(data-attribute's name),
-        - it will delete the Object with that key from the array.
+   - Sides
+   - Burger
+   - Pizza
+   - Drinks
 
-2. How to update the DOM when the item has been removed from the array.
+2. this section will appear page when the user open up the website.
+   **How To**
 
-- What needs to update in DOM
-  1. Update the HTML of ordered-items's div
-  - What functions are rendering the items on the Div when clicked on an "add" button
-    1. renderOrderedItem
-    2. getMenuItemHtml
-    3. getOrderedItems
-    - this function is pushing an object to an array when click on an "add" button
-    - Made a condition
-      1. if the parameter's value === add button dataset's value
-      - then only create a new object and push that object into an array.
-      - otherwise just return an array of object.
-        - cause, removeItemFromCart() will update the array of object globally.
+   1. create a main section✅
 
-**Issue:**
+      - create four div inside main section
+      - div1 => Sides
+      - div2 => Burgers
+      - div3 => Pizza
+      - div4 => Drinks
 
-- Inside renderOrderItem(), _Logic is:_
-  1. Whatever the HTML is already there, display that HTML and also display whatever the output you get from calling getMenuItemsHtml
-     **Work on this logic => so that only the item which user wish to delete, gets deleted and rest of the DOM, stays the way it is.**
+**Next Goal:**
 
-**What is the end goal which I would like to achieve?**
+1. filter out the data✅
 
-1. When user click on Remove button for the added item in the cart, only that item gets deleted and rest of the items stays the way they are in the DOM.
+- array one would be only for => Pizza
+- array two would be for => Burger
+- array three would be for => Sides
+- array four would be for => Drinks
+  *Is there a way to have the logic written out once, then call that function as many times as you like.*✅
 
-- Expected Behaviour:
+2. Add a type property in data.js file, where the value of that obj key's type would be == what kind of food is that item ✅
 
-  - e.g.: Current cart items are:
-    1. Pizza
-    2. Beer
+**Next Goal: Render the menu items on page**
 
-- Actual Behaviour: User want to delete Pizza from their order.
-  - e.g.: after deleting cart items are:
-    1. Beer
+- _How to:_
+  1.  render only One array item first
+  - create a function which will create the Html element in order to render the items from an array of object.
+    - this function will loop through the object of an array item
+      - use forEach loop to loop through the data
+        - inside forEach loop, create an html using template literal
+    - create a string variable each time when function gets called
+    - return the string variable which hold the html
+    - LOG Out to see if the function works as expected.
 
-However, if let's say there are more than two items then the behaviour is unexpected.
+**EXPECTED:**
 
-- e.g.: User has three items in their cart.
-  1. Pizza
-  2. Beer
-  3. burger
+1. data along with HTML elements, gets displayed on the console.
 
-User wish to delete only Burger from their order.
+**ACTUAL:**
 
-- Expected Behaviour:
-
-  - Cart should has two items left
-    1. Pizza
-    2. Beer
-
-- Actual Behaviour:
-  - Cart is only left with one item.
-    1. Beer (the item which was added after Pizza)
-
-**Solution for the issue is:**
-
-1. give an id to the remove button
-2. In an "click" eventListener for the document
-
-   - Check if the remove button was clicked
-     1. get a hold of the remove button
-     2. use **parentElement** property of an HTML element
-     - then call **remove()** method on the parent element of that Clicked _Remove button_, and that element will get deleted from the DOM.
-
-**Next Step:**
-Calculate the total price of the added items in the cart.
-
-- _Steps:_
-
-  1. create an element in HTML which will display the total price
-  2. create a function in JS, which will calculate the total price for the added items.
-
-- **Aside:**
-  1. orderedItems array is created at global level
-     - Either an item has been added or removed from the cart, the array should get updated.
-       **How to?**
-       - Breakdown =>
-         1. How to add =>
-         - If user click on an ADD button =>
-           1. create a new object with the item's name and item's price
-           2. push that object into an array.
-         - If user click on REMOVE button =>
-           1. How to delete that object from an array and change the original array.
-           - Check if the object's id === id of the clicked button
-             - delete that object from an array using spice method which will mutate the original array
-
-**How to update the DOM, when the array of object gets changed?**
-
-1.  Get a hold of the element which displays the total price
-2.  update the text content of that element by calling the "getTotalPrice()" function
-    - update the text content either the item has been added to the cart or it has been removed.
+1. Output as expected
