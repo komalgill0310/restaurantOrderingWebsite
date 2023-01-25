@@ -1,50 +1,57 @@
 import { menuArray } from "/data.js";
 
-document.addEventListener("click", (e) => {
-  e.preventDefault();
-  if (e.target.dataset.burgers) {
-    renderMenuItems(e.target.dataset.burgers);
+init();
+
+function init() {
+  document.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (e.target.dataset.burgers) {
+      renderMenuItems(e.target.dataset.burgers);
+    }
+    if (e.target.dataset.sides) {
+      renderMenuItems(e.target.dataset.sides);
+    }
+    if (e.target.dataset.drinks) {
+      renderMenuItems(e.target.dataset.drinks);
+    }
+    if (e.target.dataset.pizza) {
+      renderMenuItems(e.target.dataset.pizza);
+    }
+    changeDisplayPropertyOfHtmlElements(
+      e.target.dataset.burgers,
+      e.target.dataset.sides,
+      e.target.dataset.drinks,
+      e.target.dataset.pizza,
+      e.target.dataset.backBtn
+    );
+  });
+}
+
+function renderMenuItems(typeOfFood) {
+  document.getElementById("menu-items").innerHTML = getMenuItems(typeOfFood);
+}
+
+function changeDisplayPropertyOfHtmlElements(
+  burgerMenu,
+  sidesMenu,
+  drinksMenu,
+  pizzaMenu,
+  backButton
+) {
+  if (burgerMenu || sidesMenu || drinksMenu || pizzaMenu) {
+    document.querySelector(".menu-section-before-clicking").style.display =
+      "none";
     document.querySelector(".menu-section-after-clicking").style.display =
       "block";
     document.querySelector(".back-btn").style.display = "block";
-    document.querySelector(".menu-section-before-clicking").style.display =
-      "none";
   }
-  if (e.target.dataset.sides) {
-    renderMenuItems(e.target.dataset.sides);
-    document.querySelector(".menu-section-after-clicking").style.display =
-      "block";
-    document.querySelector(".back-btn").style.display = "block";
-    document.querySelector(".menu-section-before-clicking").style.display =
-      "none";
-  }
-  if (e.target.dataset.drinks) {
-    renderMenuItems(e.target.dataset.drinks);
-    document.querySelector(".back-btn").style.display = "block";
-    document.querySelector(".menu-section-after-clicking").style.display =
-      "block";
-    document.querySelector(".menu-section-before-clicking").style.display =
-      "none";
-  }
-  if (e.target.dataset.pizzas) {
-    renderMenuItems(e.target.dataset.pizzas);
-    document.querySelector(".menu-section-before-clicking").style.display =
-      "none";
-    document.querySelector(".menu-section-after-clicking").style.display =
-      "block";
-    document.querySelector(".back-btn").style.display = "block";
-  }
-  if (e.target.dataset.backBtn) {
+  if (backButton) {
     document.querySelector(".menu-section-before-clicking").style.display =
       "block";
     document.querySelector(".menu-section-after-clicking").style.display =
       "none";
     document.querySelector(".back-btn").style.display = "none";
   }
-});
-
-function filterMenuItems(typeOfFood) {
-  return menuArray.filter((item) => item.type === typeOfFood);
 }
 
 function getMenuItems(type) {
@@ -65,9 +72,8 @@ function getMenuItems(type) {
   return menuItemHtml;
 }
 
-function renderMenuItems(typeOfFood) {
-  document.getElementById("menu-items").innerHTML = getMenuItems(typeOfFood);
-  document.querySelector(".back-btn").style.display = "block";
+function filterMenuItems(typeOfFood) {
+  return menuArray.filter((item) => item.type === typeOfFood);
 }
 
 // Working code for the Basic Requirement of the Restaurant Ordering App
