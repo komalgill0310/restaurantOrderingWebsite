@@ -1,32 +1,74 @@
 import { menuArray } from "/data.js";
 
+document.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (e.target.dataset.burgers) {
+    renderMenuItems(e.target.dataset.burgers);
+    document.querySelector(".menu-section-after-clicking").style.display =
+      "block";
+    document.querySelector(".back-btn").style.display = "block";
+    document.querySelector(".menu-section-before-clicking").style.display =
+      "none";
+  }
+  if (e.target.dataset.sides) {
+    renderMenuItems(e.target.dataset.sides);
+    document.querySelector(".menu-section-after-clicking").style.display =
+      "block";
+    document.querySelector(".back-btn").style.display = "block";
+    document.querySelector(".menu-section-before-clicking").style.display =
+      "none";
+  }
+  if (e.target.dataset.drinks) {
+    renderMenuItems(e.target.dataset.drinks);
+    document.querySelector(".back-btn").style.display = "block";
+    document.querySelector(".menu-section-after-clicking").style.display =
+      "block";
+    document.querySelector(".menu-section-before-clicking").style.display =
+      "none";
+  }
+  if (e.target.dataset.pizzas) {
+    renderMenuItems(e.target.dataset.pizzas);
+    document.querySelector(".menu-section-before-clicking").style.display =
+      "none";
+    document.querySelector(".menu-section-after-clicking").style.display =
+      "block";
+    document.querySelector(".back-btn").style.display = "block";
+  }
+  if (e.target.dataset.backBtn) {
+    document.querySelector(".menu-section-before-clicking").style.display =
+      "block";
+    document.querySelector(".menu-section-after-clicking").style.display =
+      "none";
+    document.querySelector(".back-btn").style.display = "none";
+  }
+});
+
 function filterMenuItems(typeOfFood) {
   return menuArray.filter((item) => item.type === typeOfFood);
 }
 
-console.log(filterMenuItems("pizza"));
-console.log(filterMenuItems("burger"));
-console.log(filterMenuItems("side"));
-console.log(filterMenuItems("drink"));
-
-function getMenuItems() {
+function getMenuItems(type) {
   let menuItemHtml = "";
-  filterMenuItems("pizza").forEach((menuItem) => {
+  filterMenuItems(type).forEach((menuItem) => {
     menuItemHtml += `
-    <p>${menuItem.emoji}</p>
       <div class="item-info">
+        <p>${menuItem.emoji}</p>
         <h1>${menuItem.name}</h1>
         <p>${menuItem.ingredients}</p>
         <p>$${menuItem.price}</p>
-      </div>
-      <div classs="add-to-cart-btn">
+        <div classs="add-to-cart-btn">
         <button data-add="${menuItem.id}">Add to Order</button>
-      </div>`;
+      </div>
+      </div>
+`;
   });
   return menuItemHtml;
 }
 
-console.log(getMenuItems());
+function renderMenuItems(typeOfFood) {
+  document.getElementById("menu-items").innerHTML = getMenuItems(typeOfFood);
+  document.querySelector(".back-btn").style.display = "block";
+}
 
 // Working code for the Basic Requirement of the Restaurant Ordering App
 

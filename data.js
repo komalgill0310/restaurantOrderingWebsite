@@ -4,7 +4,7 @@ export const menuArray = [
     emoji: "🍕",
     price: 14,
     name: "Pepproni Pizza",
-    type: "pizza",
+    type: "pizzas",
     ingredients: ["pepperoni", "mushrom", "mozarella"],
   },
   {
@@ -12,7 +12,7 @@ export const menuArray = [
     emoji: "🍔",
     price: 12,
     name: "Hamburger",
-    type: "burger",
+    type: "burgers",
     ingredients: ["beef", "cheese", "lettuce"],
   },
   {
@@ -20,7 +20,7 @@ export const menuArray = [
     emoji: "🍺",
     price: 12,
     name: "Beer",
-    type: "drink",
+    type: "drinks",
     ingredients: ["grain, hops, yeast, water"],
   },
   {
@@ -28,7 +28,7 @@ export const menuArray = [
     emoji: "🥤",
     price: 1.99,
     name: "Coca-Cola",
-    type: "drink",
+    type: "drinks",
     ingredients: ["coca-cola, ice"],
   },
   {
@@ -36,7 +36,7 @@ export const menuArray = [
     emoji: "🍟",
     price: 3.99,
     name: "French Fries",
-    type: "side",
+    type: "sides",
     ingredients: ["potatoes, Vegetable Oil, Dextrose"],
   },
   {
@@ -44,7 +44,7 @@ export const menuArray = [
     emoji: "🍰",
     price: 6.99,
     name: "Lava cake",
-    type: "side",
+    type: "sides",
     ingredients: ["chocolate, butter, sugar, eggs"],
   },
   {
@@ -52,7 +52,7 @@ export const menuArray = [
     emoji: "🍕",
     price: 12,
     name: "Cheese Pizza",
-    type: "pizza",
+    type: "pizzas",
     ingredients: ["mozarella"],
   },
   {
@@ -60,7 +60,7 @@ export const menuArray = [
     emoji: "🍔",
     price: 12,
     name: "Veggie Burger",
-    type: "burger",
+    type: "burgers",
     ingredients: ["red onions", "fresh baby spinach", "veggie patti"],
   },
 ];

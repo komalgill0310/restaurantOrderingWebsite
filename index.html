@@ -18,10 +18,20 @@
 
       <main>
         <section>
-          <div class="pizza">Sides</div>
-          <div class="burger">Burgers</div>
-          <div class="sides">Sides</div>
-          <div class="drinks">Drinks</div>
+          <div class="menu-section-before-clicking">
+            <div class="menu-items" data-burgers="burgers">Burgers</div>
+            <div class="menu-items" data-sides="sides">Sides</div>
+            <div class="menu-items" data-drinks="drinks">Drinks</div>
+            <div class="menu-items" data-pizzas="pizzas">Pizza</div>
+          </div>
+          <div class="menu-section-after-clicking">
+            <div id="menu-items"></div>
+          </div>
+          <div class="back-btn">
+            <button class="go-to-main-page-btn" data-back-btn="back-btn">
+              Back
+            </button>
+          </div>
         </section>
       </main>
     </div>

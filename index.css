@@ -15,6 +15,31 @@ h1 {
   margin: 0;
 }
 
+.menu-items {
+  border: 2px solid sienna;
+  padding: 21px;
+  width: 250px;
+  height: 250px;
+  text-align: center;
+  display: flex;
+  display: inline-block;
+  justify-content: center;
+  background-color: aquamarine;
+}
+
+.menu-section-after-clicking {
+  display: none;
+}
+
+.back-btn {
+  display: none;
+}
+
+/* Styling for previous Working App version */
+/* h1 {
+  margin: 0;
+}
+
 .menu {
   display: flex;
   flex-direction: column;
@@ -52,4 +77,4 @@ input {
 
 .order-complete-state {
   display: none;
-}
+} */
