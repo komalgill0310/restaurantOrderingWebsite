@@ -4,7 +4,7 @@ export const menuArray = [
     emoji: "🍕",
     price: 14,
     name: "Pepproni Pizza",
-    type: "pizzas",
+    type: "pizza",
     ingredients: ["pepperoni", "mushrom", "mozarella"],
   },
   {
@@ -52,7 +52,7 @@ export const menuArray = [
     emoji: "🍕",
     price: 12,
     name: "Cheese Pizza",
-    type: "pizzas",
+    type: "pizza",
     ingredients: ["mozarella"],
   },
   {
