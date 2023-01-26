@@ -17,6 +17,11 @@ function init() {
     if (e.target.dataset.pizza) {
       renderMenuItems(e.target.dataset.pizza);
     }
+    if (e.target.dataset.add) {
+      console.log("Hey, I am add to order button");
+      handleAddItemClick(e.target.dataset.add);
+      document.querySelector(".pre-checkout-state").style.display = "block";
+    }
     changeDisplayPropertyOfHtmlElements(
       e.target.dataset.burgers,
       e.target.dataset.sides,
@@ -74,6 +79,49 @@ function getMenuItems(type) {
 
 function filterMenuItems(typeOfFood) {
   return menuArray.filter((item) => item.type === typeOfFood);
+}
+
+//goal: log on console when user click on the cart button.
+document.getElementById("cart-items-btn").addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log("cart button clicked!");
+});
+
+// How to make "Add to order button" work?
+
+let orderedItems = [];
+
+function handleAddItemClick(menuId) {
+  renderOrderedItems(menuId);
+}
+
+function renderOrderedItems(menuId) {
+  document.getElementById("ordered-items").innerHTML +=
+    getMenuItemsHtml(menuId);
+}
+
+function getOrderedItems(menuId) {
+  let orderItem = {
+    id: menuId,
+    name: menuArray[menuId].name,
+    price: menuArray[menuId].price,
+  };
+  orderedItems.push(orderItem);
+  return orderedItems;
+}
+
+function getMenuItemsHtml(menuId) {
+  let cartItemHtml = "";
+  const cartItemsArray = getOrderedItems(menuId);
+  cartItemsArray.forEach((cartItem) => {
+    cartItemHtml = `
+      <div class="order-cartItem">
+        <h1>${cartItem.name}</h1>
+        <p>$${cartItem.price}</p>
+        <button id="${cartItem.id}" data-remove="${menuId}">Remove</button>
+      </div>`;
+  });
+  return cartItemHtml;
 }
 
 // Working code for the Basic Requirement of the Restaurant Ordering App

@@ -35,6 +35,24 @@ h1 {
   display: none;
 }
 
+.pre-checkout-state {
+  display: none;
+  border: 1px solid red;
+  margin: 17px;
+  padding: 13px;
+  background-color: olivedrab;
+  color: white;
+}
+
+.cart-items-btn {
+  padding: 21px;
+  background: green;
+  color: white;
+  margin: 10px;
+  font-size: 43px;
+  font-weight: bold;
+}
+
 /* Styling for previous Working App version */
 /* h1 {
   margin: 0;
