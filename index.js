@@ -1,6 +1,7 @@
 import { menuArray } from "/data.js";
 
 init();
+let orderedItems = [];
 
 function init() {
   document.addEventListener("click", (e) => {
@@ -38,6 +39,14 @@ function renderMenuItems(typeOfFood) {
   document.getElementById("menu-items").innerHTML = getMenuItems(typeOfFood);
 }
 
+function handleAddItemClick(menuId) {
+  renderOrderedItems(menuId);
+}
+
+function handleRemoveItemClick(deleteBtnId) {
+  deleteElementFromDom(deleteBtnId);
+}
+
 function changeDisplayPropertyOfHtmlElements(
   burgerMenu,
   sidesMenu,
@@ -47,19 +56,19 @@ function changeDisplayPropertyOfHtmlElements(
   cartButton
 ) {
   if (burgerMenu || sidesMenu || drinksMenu || pizzaMenu) {
-    document.querySelector(".menu-section-before-clicking").style.display =
-      "none";
+    document.querySelector(".back-btn").style.display = "block";
     document.querySelector(".menu-section-after-clicking").style.display =
       "block";
-    document.querySelector(".back-btn").style.display = "block";
+    document.querySelector(".menu-section-before-clicking").style.display =
+      "none";
   }
   if (menuSections) {
-    document.querySelector(".menu-section-before-clicking").style.display =
-      "block";
-    document.querySelector(".menu-section-after-clicking").style.display =
-      "none";
     document.querySelector(".back-btn").style.display = "none";
     document.querySelector(".pre-checkout-state").style.display = "none";
+    document.querySelector(".menu-section-after-clicking").style.display =
+      "none";
+    document.querySelector(".menu-section-before-clicking").style.display =
+      "block";
   }
 
   if (!orderedItems.length && cartButton) {
@@ -70,13 +79,13 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".cart-items-section").style.display = "block";
   }
 
-  if (cartButton && orderedItems.length) {
-    document.querySelector(".pre-checkout-state").style.display = "block";
+  if (cartButton) {
+    document.querySelector(".back-btn").style.display = "none";
     document.querySelector(".menu-section-after-clicking").style.display =
       "none";
     document.querySelector(".menu-section-before-clicking").style.display =
       "none";
-    document.querySelector(".back-btn").style.display = "none";
+    document.querySelector(".pre-checkout-state").style.display = "block";
   }
 }
 
@@ -98,39 +107,13 @@ function getMenuItems(type) {
   return menuItemHtml;
 }
 
-function filterMenuItems(typeOfFood) {
-  return menuArray.filter((item) => item.type === typeOfFood);
-}
-
-// How to make "Add to order button" work?
-
-let orderedItems = [];
-
-function handleAddItemClick(menuId) {
-  renderOrderedItems(menuId);
-}
-
-function handleRemoveItemClick(deleteBtnId) {
-  deleteElementFromDom(deleteBtnId);
-}
-
-function deleteElementFromDom(deleteBtnId) {
-  document.getElementById(deleteBtnId).parentElement.remove();
-}
-
 function renderOrderedItems(menuId) {
   document.getElementById("ordered-items").innerHTML +=
     getMenuItemsHtml(menuId);
 }
 
-function getOrderedItems(menuId) {
-  let orderItem = {
-    id: menuId,
-    name: menuArray[menuId].name,
-    price: menuArray[menuId].price,
-  };
-  orderedItems.push(orderItem);
-  return orderedItems;
+function deleteElementFromDom(deleteBtnId) {
+  document.getElementById(deleteBtnId).parentElement.remove();
 }
 
 function getMenuItemsHtml(menuId) {
@@ -145,6 +128,20 @@ function getMenuItemsHtml(menuId) {
       </div>`;
   });
   return cartItemHtml;
+}
+
+function getOrderedItems(menuId) {
+  let orderItem = {
+    id: menuId,
+    name: menuArray[menuId].name,
+    price: menuArray[menuId].price,
+  };
+  orderedItems.push(orderItem);
+  return orderedItems;
+}
+
+function filterMenuItems(typeOfFood) {
+  return menuArray.filter((item) => item.type === typeOfFood);
 }
 
 // Working code for the Basic Requirement of the Restaurant Ordering App
