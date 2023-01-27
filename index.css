@@ -58,6 +58,19 @@ h1 {
   font-weight: bold;
 }
 
+.add-more-to-order {
+  background-color: lightcoral;
+  color: white;
+  font-weight: bold;
+  padding: 13px;
+  margin: 11px;
+  font-size: 21px;
+}
+
+.cart-items-section {
+  display: none;
+}
+
 /* Styling for previous Working App version */
 /* h1 {
   margin: 0;

@@ -28,7 +28,10 @@
             <div id="menu-items"></div>
           </div>
           <div class="back-btn">
-            <button class="go-to-main-page-btn" data-back-btn="back-btn">
+            <button
+              class="go-to-main-page-btn"
+              data-menu-sections="menu-sections"
+            >
               Back
             </button>
           </div>
@@ -38,6 +41,14 @@
       <section class="pre-checkout-state">
         <div>
           <h1 class="your-order-text">Your Order</h1>
+          <button
+            id="add-more-to-order"
+            class="add-more-to-order"
+            data-menu-sections="menu-sections"
+          >
+            Add more
+          </button>
+          <button id="checkout" class="chekcout">checkout</button>
         </div>
 
         <div class="ordered-items" id="ordered-items">Order-items</div>
@@ -50,7 +61,7 @@
         </div>
       </section>
 
-      <section>
+      <section class="cart-items-section">
         <button
           id="cart-items-btn"
           class="cart-items-btn"

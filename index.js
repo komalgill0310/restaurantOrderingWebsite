@@ -20,12 +20,15 @@ function init() {
     if (e.target.dataset.add) {
       handleAddItemClick(e.target.dataset.add);
     }
+    if (e.target.dataset.remove) {
+      handleRemoveItemClick(e.target.id);
+    }
     changeDisplayPropertyOfHtmlElements(
       e.target.dataset.burgers,
       e.target.dataset.sides,
       e.target.dataset.drinks,
       e.target.dataset.pizza,
-      e.target.dataset.backBtn,
+      e.target.dataset.menuSections,
       e.target.dataset.cart
     );
   });
@@ -40,7 +43,7 @@ function changeDisplayPropertyOfHtmlElements(
   sidesMenu,
   drinksMenu,
   pizzaMenu,
-  backButton,
+  menuSections,
   cartButton
 ) {
   if (burgerMenu || sidesMenu || drinksMenu || pizzaMenu) {
@@ -50,19 +53,30 @@ function changeDisplayPropertyOfHtmlElements(
       "block";
     document.querySelector(".back-btn").style.display = "block";
   }
-  if (backButton) {
+  if (menuSections) {
     document.querySelector(".menu-section-before-clicking").style.display =
       "block";
     document.querySelector(".menu-section-after-clicking").style.display =
       "none";
     document.querySelector(".back-btn").style.display = "none";
+    document.querySelector(".pre-checkout-state").style.display = "none";
   }
+
+  if (!orderedItems.length && cartButton) {
+    alert("Your cart is empty🛒");
+  }
+
+  if (orderedItems.length) {
+    document.querySelector(".cart-items-section").style.display = "block";
+  }
+
   if (cartButton && orderedItems.length) {
     document.querySelector(".pre-checkout-state").style.display = "block";
     document.querySelector(".menu-section-after-clicking").style.display =
       "none";
     document.querySelector(".menu-section-before-clicking").style.display =
       "none";
+    document.querySelector(".back-btn").style.display = "none";
   }
 }
 
@@ -94,6 +108,14 @@ let orderedItems = [];
 
 function handleAddItemClick(menuId) {
   renderOrderedItems(menuId);
+}
+
+function handleRemoveItemClick(deleteBtnId) {
+  deleteElementFromDom(deleteBtnId);
+}
+
+function deleteElementFromDom(deleteBtnId) {
+  document.getElementById(deleteBtnId).parentElement.remove();
 }
 
 function renderOrderedItems(menuId) {
