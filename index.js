@@ -18,16 +18,15 @@ function init() {
       renderMenuItems(e.target.dataset.pizza);
     }
     if (e.target.dataset.add) {
-      console.log("Hey, I am add to order button");
       handleAddItemClick(e.target.dataset.add);
-      document.querySelector(".pre-checkout-state").style.display = "block";
     }
     changeDisplayPropertyOfHtmlElements(
       e.target.dataset.burgers,
       e.target.dataset.sides,
       e.target.dataset.drinks,
       e.target.dataset.pizza,
-      e.target.dataset.backBtn
+      e.target.dataset.backBtn,
+      e.target.dataset.cart
     );
   });
 }
@@ -41,7 +40,8 @@ function changeDisplayPropertyOfHtmlElements(
   sidesMenu,
   drinksMenu,
   pizzaMenu,
-  backButton
+  backButton,
+  cartButton
 ) {
   if (burgerMenu || sidesMenu || drinksMenu || pizzaMenu) {
     document.querySelector(".menu-section-before-clicking").style.display =
@@ -56,6 +56,13 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".menu-section-after-clicking").style.display =
       "none";
     document.querySelector(".back-btn").style.display = "none";
+  }
+  if (cartButton && orderedItems.length) {
+    document.querySelector(".pre-checkout-state").style.display = "block";
+    document.querySelector(".menu-section-after-clicking").style.display =
+      "none";
+    document.querySelector(".menu-section-before-clicking").style.display =
+      "none";
   }
 }
 
@@ -80,12 +87,6 @@ function getMenuItems(type) {
 function filterMenuItems(typeOfFood) {
   return menuArray.filter((item) => item.type === typeOfFood);
 }
-
-//goal: log on console when user click on the cart button.
-document.getElementById("cart-items-btn").addEventListener("click", (e) => {
-  e.preventDefault();
-  console.log("cart button clicked!");
-});
 
 // How to make "Add to order button" work?
 
