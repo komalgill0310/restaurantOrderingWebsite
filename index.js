@@ -7,6 +7,7 @@ function init() {
   document.addEventListener("click", (e) => {
     e.preventDefault();
     if (e.target.dataset.burgers) {
+      console.log("clicked Burgers");
       renderMenuItems(e.target.dataset.burgers);
     }
     if (e.target.dataset.sides) {
@@ -24,15 +25,41 @@ function init() {
     if (e.target.dataset.remove) {
       handleRemoveItemClick(e.target.id);
     }
+    if (e.target.dataset.checkout) {
+      document.querySelector(".checkout-payment-modal-state").style.display =
+        "block";
+    }
+    if (e.target.dataset.close) {
+      document.querySelector(".checkout-payment-modal-state").style.display =
+        "none";
+    }
+    if (e.target.dataset.pay) {
+      validateForm();
+    }
     changeDisplayPropertyOfHtmlElements(
       e.target.dataset.burgers,
       e.target.dataset.sides,
       e.target.dataset.drinks,
       e.target.dataset.pizza,
       e.target.dataset.menuSections,
-      e.target.dataset.cart
+      e.target.dataset.cart,
+      e.target.dataset.pay
     );
   });
+}
+
+function setHtmlContentForTotalPrice() {
+  document.getElementById(
+    "total-price"
+  ).textContent = `Total Price: $${getTotalPrice()}`;
+}
+
+function getTotalPrice() {
+  const totalPrice = orderedItems.reduce(
+    (totalPrice, itemPrice) => totalPrice + itemPrice.price,
+    0
+  );
+  return +totalPrice.toFixed(2);
 }
 
 function renderMenuItems(typeOfFood) {
@@ -41,10 +68,22 @@ function renderMenuItems(typeOfFood) {
 
 function handleAddItemClick(menuId) {
   renderOrderedItems(menuId);
+  setHtmlContentForTotalPrice();
 }
 
 function handleRemoveItemClick(deleteBtnId) {
   deleteElementFromDom(deleteBtnId);
+  deleteItemFromOrderedItemsArray(deleteBtnId);
+  setHtmlContentForTotalPrice();
+}
+
+function deleteItemFromOrderedItemsArray(deleteBtnId) {
+  for (let i = 0; i < orderedItems.length; i++) {
+    if (orderedItems[i].id === deleteBtnId) {
+      orderedItems.splice(i, 1);
+    }
+  }
+  return orderedItems;
 }
 
 function changeDisplayPropertyOfHtmlElements(
@@ -53,7 +92,8 @@ function changeDisplayPropertyOfHtmlElements(
   drinksMenu,
   pizzaMenu,
   menuSections,
-  cartButton
+  cartButton,
+  pay
 ) {
   if (burgerMenu || sidesMenu || drinksMenu || pizzaMenu) {
     document.querySelector(".back-btn").style.display = "block";
@@ -63,6 +103,7 @@ function changeDisplayPropertyOfHtmlElements(
       "none";
   }
   if (menuSections) {
+    console.log(menuSections);
     document.querySelector(".back-btn").style.display = "none";
     document.querySelector(".pre-checkout-state").style.display = "none";
     document.querySelector(".menu-section-after-clicking").style.display =
@@ -86,6 +127,27 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".menu-section-before-clicking").style.display =
       "none";
     document.querySelector(".pre-checkout-state").style.display = "block";
+  }
+  if (pay) {
+    document.querySelector(".cart-items-section").style.display = "none";
+  }
+}
+
+function validateForm() {
+  if (
+    !document.getElementById("name").value ||
+    !document.getElementById("card-number").value ||
+    !document.getElementById("cvv").value
+  ) {
+    alert("Please fill out the payment information");
+  } else {
+    document.querySelector(".order-complete-state").style.display = "block";
+    document.querySelector(".pre-checkout-state").style.display = "none";
+    document.querySelector(".checkout-payment-modal-state").style.display =
+      "none";
+    document.getElementById("order-on-the-way").innerHTML = `Thanks ${
+      document.getElementById("name").value
+    }! Your order is on the way!`;
   }
 }
 

@@ -71,6 +71,30 @@ h1 {
   display: none;
 }
 
+.checkout-payment-modal-state {
+  display: none;
+}
+
+form {
+  border: 2px solid red;
+  display: inline-block;
+  background-color: pink;
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 543px;
+  width: 524px;
+}
+
+input {
+  margin: 12px;
+  padding: 17px;
+  display: block;
+}
+
 /* Styling for previous Working App version */
 /* h1 {
   margin: 0;
