@@ -3,21 +3,46 @@ import { menuArray } from "/data.js";
 init();
 let orderedItems = [];
 
+const imagesObj = {
+  burgers: [
+    "images/burgersImages/burger1.avif",
+    "images/burgersImages/burger2.avif",
+    "images/burgersImages/burger3.avif",
+    "images/burgersImages/burger4.jpg",
+    "images/burgersImages/burger5.jpg",
+  ],
+  pizza: [
+    "images/pizzaImages/pizza.avif",
+    "images/pizzaImages/pizza1.avif",
+    "images/pizzaImages/pizza2.avif",
+    "images/pizzaImages/pizza3.jpg",
+    "images/pizzaImages/pizza4.jpg",
+    "images/pizzaImages/pizza5.jpg",
+  ],
+};
+
+function getRandomImagesLink(typeOfImg) {
+  const imgMenuItems = document.getElementById("img-menu-items");
+  const randomNum = Math.floor(Math.random() * imagesObj[typeOfImg].length);
+  console.log(imagesObj[typeOfImg][randomNum]);
+  imgMenuItems.src = imagesObj[typeOfImg][randomNum];
+}
+
 function init() {
   document.addEventListener("click", (e) => {
     e.preventDefault();
     if (e.target.dataset.burgers) {
       console.log("clicked Burgers");
-      renderMenuItems(e.target.dataset.burgers);
+      renderMenu(e.target.dataset.burgers);
     }
     if (e.target.dataset.sides) {
-      renderMenuItems(e.target.dataset.sides);
+      renderMenu(e.target.dataset.sides);
     }
     if (e.target.dataset.drinks) {
-      renderMenuItems(e.target.dataset.drinks);
+      renderMenu(e.target.dataset.drinks);
     }
     if (e.target.dataset.pizza) {
-      renderMenuItems(e.target.dataset.pizza);
+      renderMenu(e.target.dataset.pizza);
     }
     if (e.target.dataset.add) {
       handleAddItemClick(e.target.dataset.add);
@@ -62,7 +87,8 @@ function getTotalPrice() {
   return +totalPrice.toFixed(2);
 }
 
-function renderMenuItems(typeOfFood) {
+function renderMenu(typeOfFood) {
+  setInterval(getRandomImagesLink, 1000, typeOfFood);
   document.getElementById("menu-items").innerHTML = getMenuItems(typeOfFood);
 }
 
