@@ -1,25 +1,8 @@
 import { menuArray } from "/data.js";
+import { imagesObj } from "./imageObj.js";
 
 init();
 let orderedItems = [];
-
-const imagesObj = {
-  burgers: [
-    "images/burgersImages/burger1.avif",
-    "images/burgersImages/burger2.avif",
-    "images/burgersImages/burger3.avif",
-    "images/burgersImages/burger4.jpg",
-    "images/burgersImages/burger5.jpg",
-  ],
-  pizza: [
-    "images/pizzaImages/pizza.avif",
-    "images/pizzaImages/pizza1.avif",
-    "images/pizzaImages/pizza2.avif",
-    "images/pizzaImages/pizza3.jpg",
-    "images/pizzaImages/pizza4.jpg",
-    "images/pizzaImages/pizza5.jpg",
-  ],
-};
 
 function getRandomImagesLink(typeOfImg) {
   const imgMenuItems = document.getElementById("img-menu-items");

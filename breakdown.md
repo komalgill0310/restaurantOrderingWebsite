@@ -1,6 +1,6 @@
 **End Goal:**
 
-1. Have the header image change after 15 second
+1. Have the image change related to each section after 15 second
 
 Breakdown:
 
@@ -58,3 +58,7 @@ Steps to reach there:
 3. call setInterval on the getImage function
 
 - call setInterval inside the function which is rendering the menu-items on the page
+
+**Next Goal:**
+
+1. Add the images related to each menu-sections in the object
