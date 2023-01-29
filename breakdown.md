@@ -1,6 +1,6 @@
 **End Goal:**
 
-1. Have the image change related to each section after 15 second
+1. Have the image change related to each section after 15 second✅
 
 Breakdown:
 
@@ -62,3 +62,12 @@ Steps to reach there:
 **Next Goal:**
 
 1. Add the images related to each menu-sections in the object
+
+**NEXT GOAL:**
+
+1. Fix the header of the app
+
+Breakdown:
+
+1. update the id and class name for the header if it not clear enough
+2. Set the header width and height
