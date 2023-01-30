@@ -1,5 +1,3 @@
-**Jan30,2023 Goals to accomplish by the end today**
-
 1. Fix styling for the inital page of the app
 
 - Style the header of the app✅
