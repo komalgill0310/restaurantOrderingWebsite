@@ -29,18 +29,26 @@
         />
         <div class="store-info position-absolute">
           <h1 class="store-name">PizzaWind</h1>
-          <h3 class="address">289 James Potter, Brampton, Ontario</h3>
+          <h3 class="address">289 James Potter, Ontario</h3>
           <h4 class="phone-number">123-456-7891</h4>
         </div>
       </header>
 
       <main>
         <section>
-          <div class="menu-section-before-clicking">
-            <div class="menu-items" data-burgers="burgers">Burgers</div>
-            <div class="menu-items" data-sides="sides">Sides</div>
-            <div class="menu-items" data-drinks="drinks">Drinks</div>
-            <div class="menu-items" data-pizza="pizza">Pizza</div>
+          <div class="menu-section-before-click">
+            <div class="burger-sides-drink">
+              <div class="menu-items-section" data-burgers="burgers">
+                Burgers
+              </div>
+              <div class="menu-items-section" data-sides="sides">Sides</div>
+              <div class="menu-items-section" data-drinks="drinks">Drinks</div>
+            </div>
+            <div>
+              <div class="menu-items-section" id="pizza-div" data-pizza="pizza">
+                Pizza
+              </div>
+            </div>
           </div>
           <div class="menu-section-after-clicking">
             <img id="img-menu-items" src="" alt="menu-items-images" />
@@ -126,6 +134,12 @@
       <section class="order-complete-state">
         <h1 id="order-on-the-way"></h1>
       </section>
+
+      <footer>
+        <p>
+          © 2023 All Rights Reserved Terms of Use and Privacy Policy. PizzaWind
+        </p>
+      </footer>
     </div>
     <script src="index.js" type="module"></script>
   </body>

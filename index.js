@@ -108,8 +108,7 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".back-btn").style.display = "block";
     document.querySelector(".menu-section-after-clicking").style.display =
       "block";
-    document.querySelector(".menu-section-before-clicking").style.display =
-      "none";
+    document.querySelector(".menu-section-before-click").style.display = "none";
   }
   if (menuSections) {
     console.log(menuSections);
@@ -117,7 +116,7 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".pre-checkout-state").style.display = "none";
     document.querySelector(".menu-section-after-clicking").style.display =
       "none";
-    document.querySelector(".menu-section-before-clicking").style.display =
+    document.querySelector(".menu-section-before-click").style.display =
       "block";
   }
 
@@ -133,8 +132,7 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".back-btn").style.display = "none";
     document.querySelector(".menu-section-after-clicking").style.display =
       "none";
-    document.querySelector(".menu-section-before-clicking").style.display =
-      "none";
+    document.querySelector(".menu-section-before-click").style.display = "none";
     document.querySelector(".pre-checkout-state").style.display = "block";
   }
   if (pay) {

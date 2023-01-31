@@ -2,6 +2,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Domine", serif;
+  /* min-height: 100vh;
+  display: flex; */
 }
 
 .position-relative {
@@ -33,6 +35,7 @@ body {
   line-height: 14px;
   color: #00d2f3;
   text-shadow: -3px 2px #0a0a0a;
+  overflow-wrap: break-word;
 }
 
 .store-name {
@@ -51,18 +54,53 @@ body {
   margin-top: 0;
 }
 
-.menu-items {
-  border: 2px solid sienna;
-  padding: 21px;
-  width: 250px;
-  height: 250px;
-  text-align: center;
+.menu-section-before-click {
   display: flex;
-  display: inline-block;
-  justify-content: center;
-  background-color: aquamarine;
+  flex-direction: column;
+  text-align: center;
 }
 
+.burger-sides-drink {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+.menu-items-section {
+  width: 850px;
+  height: 265px;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  font-weight: 500;
+  font-size: 61px;
+  font-family: cursive;
+  line-height: 200px;
+  border-radius: 50px;
+  background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+  text-shadow: 2px 3px #ff006e;
+  margin: 3px;
+}
+
+#pizza-div {
+  width: 100%;
+  line-height: 250px;
+  margin-top: 10px;
+}
+
+footer {
+  color: white;
+  background-color: black;
+  padding: 21px;
+  font-size: 17px;
+  font-weight: 500px;
+  text-align: center;
+  /* display: inline-block; */
+  width: 100%;
+  /* margin-top: auto; */
+  position: absolute;
+  bottom: 0;
+}
 .menu-section-after-clicking {
   display: none;
 }
