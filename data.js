@@ -1,7 +1,6 @@
 export const menuArray = [
   {
     id: 0,
-    emoji: "🍕",
     price: 14,
     name: "Pepproni Pizza",
     type: "pizza",
@@ -9,7 +8,6 @@ export const menuArray = [
   },
   {
     id: 1,
-    emoji: "🍔",
     price: 12,
     name: "Hamburger",
     type: "burgers",
@@ -17,7 +15,6 @@ export const menuArray = [
   },
   {
     id: 2,
-    emoji: "🍺",
     price: 12,
     name: "Beer",
     type: "drinks",
@@ -25,7 +22,6 @@ export const menuArray = [
   },
   {
     id: 3,
-    emoji: "🥤",
     price: 1.99,
     name: "Coca-Cola",
     type: "drinks",
@@ -33,7 +29,6 @@ export const menuArray = [
   },
   {
     id: 4,
-    emoji: "🍟",
     price: 3.99,
     name: "French Fries",
     type: "sides",
@@ -41,7 +36,6 @@ export const menuArray = [
   },
   {
     id: 5,
-    emoji: "🍰",
     price: 6.99,
     name: "Lava cake",
     type: "sides",
@@ -49,7 +43,6 @@ export const menuArray = [
   },
   {
     id: 6,
-    emoji: "🍕",
     price: 12,
     name: "Cheese Pizza",
     type: "pizza",
@@ -57,10 +50,37 @@ export const menuArray = [
   },
   {
     id: 7,
-    emoji: "🍔",
-    price: 12,
+    price: 10.99,
     name: "Veggie Burger",
     type: "burgers",
     ingredients: ["red onions", "fresh baby spinach", "veggie patti"],
+  },
+  {
+    id: 8,
+    price: 14.99,
+    name: "Chicken Burger",
+    type: "burgers",
+    ingredients: ["ground chicken", "whole wheat", "cucumber", "lettuce"],
+  },
+  {
+    id: 9,
+    price: 5.99,
+    name: "Apple Juice",
+    type: "drinks",
+    ingredients: ["apples, cinnamon, sugar"],
+  },
+  {
+    id: 10,
+    price: 5.99,
+    name: "Orange Juice",
+    type: "drinks",
+    ingredients: ["orange juice concentrate, filtered water"],
+  },
+  {
+    id: 11,
+    price: 6.99,
+    name: "Lemonade",
+    type: "drinks",
+    ingredients: ["lemon juice, filtered water, cane sugar"],
   },
 ];
