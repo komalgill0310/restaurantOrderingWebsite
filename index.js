@@ -164,13 +164,12 @@ function getMenuItems(type) {
   let menuItemHtml = "";
   filterMenuItems(type).forEach((menuItem) => {
     menuItemHtml += `
-      <div class="item-info">
-        <p>${menuItem.emoji}</p>
-        <h1>${menuItem.name}</h1>
-        <p>${menuItem.ingredients}</p>
-        <p>$${menuItem.price}</p>
-        <div classs="add-to-cart-btn">
-        <button data-add="${menuItem.id}">Add to Order</button>
+      <div class="menu-item-info"> 
+        <h1 class="menu-item-name">${menuItem.name}</h1>
+        <p class="menu-item-ingredients">${menuItem.ingredients}</p>
+        <p class="menu-item-price">$${menuItem.price}</p>
+        <div class="add-to-cart-btn">
+        <button class="online-order-btn" data-add="${menuItem.id}">Online Order</button>
       </div>
       </div>
 `;
