@@ -118,6 +118,7 @@ footer {
   padding: 21px;
   flex-grow: 1;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .menu-item-info {

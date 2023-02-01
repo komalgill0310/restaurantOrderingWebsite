@@ -83,4 +83,11 @@ export const menuArray = [
     type: "drinks",
     ingredients: ["lemon juice, filtered water, cane sugar"],
   },
+  {
+    id: 12,
+    price: 1.99,
+    name: "Orange Crush",
+    type: "drinks",
+    ingredients: ["orange flavored vodka, triple sec, cane sugar"],
+  },
 ];
