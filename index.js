@@ -5,9 +5,10 @@ init();
 let orderedItems = [];
 
 function getRandomImagesLink(typeOfImg) {
-  const imgMenuItems = document.getElementById("img-menu-items");
+  const imgMenuItems = document.querySelector(".header-img");
   const randomNum = Math.floor(Math.random() * imagesObj[typeOfImg].length);
   console.log(imagesObj[typeOfImg][randomNum]);
+  console.log("img: ", imgMenuItems.src);
   imgMenuItems.src = imagesObj[typeOfImg][randomNum];
 }
 
@@ -70,9 +71,12 @@ function getTotalPrice() {
   return +totalPrice.toFixed(2);
 }
 
+let imagesInterval;
+
 function renderMenu(typeOfFood) {
-  setInterval(getRandomImagesLink, 1000, typeOfFood);
+  getRandomImagesLink(typeOfFood);
   document.getElementById("menu-items").innerHTML = getMenuItems(typeOfFood);
+  imagesInterval = setInterval(getRandomImagesLink, 3000, typeOfFood);
 }
 
 function handleAddItemClick(menuId) {
@@ -106,18 +110,17 @@ function changeDisplayPropertyOfHtmlElements(
 ) {
   if (burgerMenu || sidesMenu || drinksMenu || pizzaMenu) {
     document.querySelector(".back-btn").style.display = "block";
-    document.querySelector(".menu-section-after-clicking").style.display =
-      "block";
+    document.querySelector(".menu-section-after-click").style.display = "block";
     document.querySelector(".menu-section-before-click").style.display = "none";
   }
   if (menuSections) {
-    console.log(menuSections);
     document.querySelector(".back-btn").style.display = "none";
     document.querySelector(".pre-checkout-state").style.display = "none";
-    document.querySelector(".menu-section-after-clicking").style.display =
-      "none";
+    document.querySelector(".menu-section-after-click").style.display = "none";
     document.querySelector(".menu-section-before-click").style.display =
       "block";
+    document.querySelector(".header-img").src = "images/headerImage.avif";
+    clearInterval(imagesInterval);
   }
 
   if (!orderedItems.length && cartButton) {
@@ -130,8 +133,7 @@ function changeDisplayPropertyOfHtmlElements(
 
   if (cartButton) {
     document.querySelector(".back-btn").style.display = "none";
-    document.querySelector(".menu-section-after-clicking").style.display =
-      "none";
+    document.querySelector(".menu-section-after-click").style.display = "none";
     document.querySelector(".menu-section-before-click").style.display = "none";
     document.querySelector(".pre-checkout-state").style.display = "block";
   }
