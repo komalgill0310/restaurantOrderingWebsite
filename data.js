@@ -90,4 +90,34 @@ export const menuArray = [
     type: "drinks",
     ingredients: ["orange flavored vodka, triple sec, cane sugar"],
   },
+  {
+    id: 13,
+    price: 6.99,
+    name: "Garlic Bread with Cheese",
+    type: "sides",
+    ingredients: ["mozzarella cheese, italian bread, parmesan cheese"],
+  },
+  {
+    id: 14,
+    price: 6.99,
+    name: "Garlic Sticks",
+    type: "sides",
+    ingredients: ["bread flour, mozzarella cheese, parmesan cheese"],
+  },
+  {
+    id: 15,
+    price: 5.99,
+    name: "Onion Rings",
+    type: "sides",
+    ingredients: ["bread crumbs, egg, baking powder, seasoned salt,"],
+  },
+  {
+    id: 16,
+    price: 6.99,
+    name: "Mozzarella Sticks",
+    type: "sides",
+    ingredients: [
+      "part-skim mozzarella cheese, wheat flour, soybean oil, water",
+    ],
+  },
 ];

@@ -12,6 +12,7 @@ export const imagesObj = {
     "images/sidesSection/fries1.avif",
     "images/sidesSection/garlic bread.jpg",
     "images/sidesSection/mozzSticks.jpg",
+    "images/sidesSection/onion rings.jpg",
   ],
   drinks: [
     "images/drinksSection/drink1.jpg",
