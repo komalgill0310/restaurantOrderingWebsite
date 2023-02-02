@@ -8,4 +8,13 @@
        1. header section display prop will be none✅
      2. Add a cart icon instead of the text in the cart button.✅
 3. When user wanna add more to their order and comes back to the main page, cart button should show up.✅
-4. Fix the position for the Footer
+4. Fix styling for the "pre-checkout-section"
+   1. Header for the cart section
+      - Your order, Add More button, Checkout Button
+      - Product(LHS of the section) Price(RHS)
+      - Horizontal line below
+      - item name + button item price delete icon
+   - background color white
+5. entire section class name => pre-checkout-section
+   - background color: white
+6. Fix the position for the Footer

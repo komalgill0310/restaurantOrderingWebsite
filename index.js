@@ -7,8 +7,8 @@ let orderedItems = [];
 function getRandomImagesLink(typeOfImg) {
   const imgMenuItems = document.querySelector(".header-img");
   const randomNum = Math.floor(Math.random() * imagesObj[typeOfImg].length);
-  console.log(imagesObj[typeOfImg][randomNum]);
-  console.log("img: ", imgMenuItems.src);
+  // console.log(imagesObj[typeOfImg][randomNum]);
+  // console.log("img: ", imgMenuItems.src);
   imgMenuItems.src = imagesObj[typeOfImg][randomNum];
 }
 
@@ -51,7 +51,7 @@ function init() {
       e.target.dataset.drinks,
       e.target.dataset.pizza,
       e.target.dataset.menuSections,
-      e.target.dataset.cart,
+      e.target.dataset.cartIcon,
       e.target.dataset.pay
     );
   });
@@ -192,10 +192,10 @@ function getMenuItemsHtml(menuId) {
   const cartItemsArray = getOrderedItems(menuId);
   cartItemsArray.forEach((cartItem) => {
     cartItemHtml = `
-      <div class="order-cartItem">
-        <h1>${cartItem.name}</h1>
-        <p>$${cartItem.price}</p>
-        <button id="${cartItem.id}" data-remove="${menuId}">Remove</button>
+      <div class="cart-items">
+        <p class="cart-item-name-el">${cartItem.name}</p>
+        <p class="cart-item-price-el">$${cartItem.price}</p>
+        <i class="fa-solid fa-trash-can" id="${cartItem.id}" data-remove="${menuId}"></i>
       </div>`;
   });
   return cartItemHtml;

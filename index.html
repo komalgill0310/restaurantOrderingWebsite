@@ -74,21 +74,29 @@
       </main>
 
       <section class="pre-checkout-state">
-        <div>
+        <div class="your-order-text-add-More-checout-btn">
           <h1 class="your-order-text">Your Order</h1>
           <button
-            id="add-more-to-order"
-            class="go-to-main-page-btn"
+            id="add-more-to-order-btn"
+            class="add-more-to-order-btn"
             data-menu-sections="menu-sections"
           >
             Add more
           </button>
-          <button id="checkout" class="chekcout" data-checkout="checkout">
-            checkout
+          <button
+            id="checkout-btn"
+            class="checkout-btn"
+            data-checkout="checkout"
+          >
+            Checkout
           </button>
         </div>
 
-        <div class="ordered-items" id="ordered-items">Order-items</div>
+        <div class="product-price-div">
+          <p class="product-el">Product</p>
+          <p class="price-el">Price</p>
+        </div>
+        <div class="ordered-items" id="ordered-items"></div>
 
         <div class="place-order-btn">
           <h2 id="total-price"></h2>
@@ -99,12 +107,8 @@
       </section>
 
       <section class="cart-items-section">
-        <button
-          id="cart-items-btn"
-          class="cart-items-btn"
-          data-cart="cart-item-btn"
-        >
-          <i class="fa-solid fa-cart-shopping"></i>
+        <button id="cart-items-btn" class="cart-items-btn">
+          <i class="fa-solid fa-cart-shopping" data-cart-icon="cart-icon"></i>
         </button>
       </section>
 
