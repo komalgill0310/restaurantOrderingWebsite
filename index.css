@@ -54,7 +54,10 @@ footer {
   object-fit: cover;
 }
 
-/*  */
+/* icons */
+/* .fa-solid {
+  color: blue;
+} */
 
 .store-info {
   top: 50%;
@@ -176,13 +179,15 @@ footer {
   color: white;
 }
 
+/* buttons */
 .cart-items-btn {
   padding: 21px;
-  background: green;
+  background: darkred;
   color: white;
   margin: 10px;
   font-size: 43px;
   font-weight: bold;
+  border-radius: 50%;
 }
 
 .add-more-to-order {

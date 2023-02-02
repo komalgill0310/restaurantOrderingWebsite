@@ -119,10 +119,10 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".menu-section-after-click").style.display = "none";
     document.querySelector(".menu-section-before-click").style.display =
       "block";
+    document.querySelector(".header").style.display = "block";
     document.querySelector(".header-img").src = "images/headerImage.avif";
     clearInterval(imagesInterval);
   }
-
   if (!orderedItems.length && cartButton) {
     alert("Your cart is empty🛒");
   }
@@ -136,6 +136,7 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".menu-section-after-click").style.display = "none";
     document.querySelector(".menu-section-before-click").style.display = "none";
     document.querySelector(".pre-checkout-state").style.display = "block";
+    document.querySelector(".header").style.display = "none";
   }
   if (pay) {
     document.querySelector(".cart-items-section").style.display = "none";
