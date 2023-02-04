@@ -1,21 +1,21 @@
 export const menuArray = [
   {
     id: 0,
-    price: 14,
+    price: 14.99,
     name: "Pepproni Pizza",
     type: "pizza",
     ingredients: ["pepperoni", "mushrom", "mozarella"],
   },
   {
     id: 1,
-    price: 12,
+    price: 12.99,
     name: "Hamburger",
     type: "burgers",
     ingredients: ["beef", "cheese", "lettuce"],
   },
   {
     id: 2,
-    price: 12,
+    price: 12.99,
     name: "Beer",
     type: "drinks",
     ingredients: ["grain, hops, yeast, water"],
@@ -43,7 +43,7 @@ export const menuArray = [
   },
   {
     id: 6,
-    price: 12,
+    price: 10.99,
     name: "Cheese Pizza",
     type: "pizza",
     ingredients: ["mozarella"],

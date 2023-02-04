@@ -83,26 +83,27 @@
           >
             Add more
           </button>
-          <button
-            id="checkout-btn"
-            class="checkout-btn"
-            data-checkout="checkout"
-          >
-            Checkout
-          </button>
         </div>
 
-        <div class="product-price-div">
-          <p class="product-el">Product</p>
-          <p class="price-el">Price</p>
-        </div>
-        <div class="ordered-items" id="ordered-items"></div>
-
-        <div class="place-order-btn">
-          <h2 id="total-price"></h2>
-          <button id="complete-order-btn" data-complete="completeOrder">
-            Complete Order
-          </button>
+        <div class="cart-items-total-price-div display-flex">
+          <div class="product-price-div display-flex">
+            <p class="product-el">Product</p>
+            <p class="price-el">Price</p>
+          </div>
+          <div class="ordered-items" id="ordered-items"></div>
+          <div class="total-price-div display-flex">
+            <!-- <span class="total-price">Total price:</span>  
+              <span class="items-total-price" id="items-total-price"></span> -->
+          </div>
+          <div class="complete-order">
+            <button
+              id="checkout-btn"
+              class="checkout-btn"
+              data-checkout="checkout"
+            >
+              Complete Order
+            </button>
+          </div>
         </div>
       </section>
 

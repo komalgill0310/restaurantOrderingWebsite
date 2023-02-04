@@ -172,7 +172,6 @@ footer {
 }
 .pre-checkout-state {
   display: none;
-  border: 1px solid red;
   margin: 17px;
   padding: 13px;
 }
@@ -213,32 +212,46 @@ footer {
   margin-top: 37px;
 }
 
+.complete-order {
+  margin-top: 31px;
+}
 .checkout-btn {
   color: white;
-  background-color: #d9534f;
+  background-color: green;
   cursor: pointer;
-  align-self: start;
-  padding: 5px 10px;
-  font-size: 12px;
+  padding: 15px 10px;
+  font-size: 21px;
   line-height: 1.5;
-  border-radius: 3px;
-  margin-top: 37px;
+  border-radius: 7px;
+  display: block;
+  width: 100%;
+  margin: 13px 0;
+  font-family: "Domine", serif;
+  font-weight: 700;
+  border: none;
 }
 
-.add-more-to-order-btn:hover,
-.checkout-btn:hover {
+.add-more-to-order-btn:hover {
   background-color: #d43f3a;
 }
 
+.checkout-btn:hover {
+  background-color: lightseagreen;
+}
+
+.cart-items-total-price-div {
+  flex-direction: column;
+}
+
 .product-price-div {
-  display: flex;
   justify-content: space-between;
+
   border-bottom: 2px solid #ddd;
   padding: 0;
 }
 
 .product-el {
-  margin-left: 31px;
+  margin-left: 35px;
   font-weight: 700;
   color: #555555;
   font-size: 21px;
@@ -251,28 +264,37 @@ footer {
   font-size: 21px;
 }
 
-.cart-items {
-  display: flex;
+.cart-item,
+.total-price-div {
   justify-content: space-between;
   padding: 0 13px;
+  font-size: 21px;
+  color: #555555;
 }
 
-.cart-item-name-el {
+.cart-item-name-el,
+.total-price {
   margin-left: 17px;
 }
 
-.cart-item-price-el {
+.cart-item-price-el,
+.items-total-price {
   margin-left: auto;
-  margin-right: 21px;
+  margin-right: 41px;
+}
+
+.items-total-price {
+  margin-right: 75px;
 }
 .fa-trash-can {
   color: white;
   background-color: #d9534f;
   align-self: start;
-  padding: 13px;
+  padding: 3px;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 11px;
+  margin-top: 17px;
+  margin-right: 13px;
 }
 .add-more-to-order {
   background-color: lightcoral;
@@ -281,6 +303,14 @@ footer {
   padding: 13px;
   margin: 11px;
   font-size: 21px;
+}
+
+.total-price-div {
+  border-top: 2px solid black;
+  color: black;
+  font-weight: 700;
+  padding-top: 17px;
+  flex-direction: column;
 }
 
 .cart-items-section {

@@ -58,17 +58,32 @@ function init() {
 }
 
 function setHtmlContentForTotalPrice() {
-  document.getElementById(
-    "total-price"
-  ).textContent = `Total Price: $${getTotalPrice()}`;
+  const price = getTotalPrice();
+  console.log(price);
+  document.querySelector(".total-price-div").innerHTML = `
+  <span class="sub-total">Subtotal $${price.subTotal}</span>
+  <span class="hst">HST $${price.hst}</span>
+  <span class="total-price">Total Price ${price.totalPrice}</span>
+  `;
+  // document.getElementById(
+  //   "items-total-price"
+  // ).textContent = `$${getTotalPrice()}`;
 }
 
 function getTotalPrice() {
-  const totalPrice = orderedItems.reduce(
+  const subTotal = orderedItems.reduce(
     (totalPrice, itemPrice) => totalPrice + itemPrice.price,
     0
   );
-  return +totalPrice.toFixed(2);
+  const subTotalFixDecimalValue = +subTotal.toFixed(2);
+  const hst = +(subTotalFixDecimalValue * 0.13).toFixed(2);
+  const totalPrice = subTotalFixDecimalValue + hst;
+  console.log(subTotalFixDecimalValue, hst, totalPrice);
+  return {
+    subTotal: subTotalFixDecimalValue,
+    hst: hst,
+    totalPrice: totalPrice,
+  };
 }
 
 let imagesInterval;
@@ -119,6 +134,7 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".menu-section-after-click").style.display = "none";
     document.querySelector(".menu-section-before-click").style.display =
       "block";
+    document.querySelector(".cart-items-section").style.display = "block";
     document.querySelector(".header").style.display = "block";
     document.querySelector(".header-img").src = "images/headerImage.avif";
     clearInterval(imagesInterval);
@@ -137,6 +153,7 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".menu-section-before-click").style.display = "none";
     document.querySelector(".pre-checkout-state").style.display = "block";
     document.querySelector(".header").style.display = "none";
+    document.querySelector(".cart-items-section").style.display = "none";
   }
   if (pay) {
     document.querySelector(".cart-items-section").style.display = "none";
@@ -192,7 +209,7 @@ function getMenuItemsHtml(menuId) {
   const cartItemsArray = getOrderedItems(menuId);
   cartItemsArray.forEach((cartItem) => {
     cartItemHtml = `
-      <div class="cart-items">
+      <div class="cart-item display-flex">
         <p class="cart-item-name-el">${cartItem.name}</p>
         <p class="cart-item-price-el">$${cartItem.price}</p>
         <i class="fa-solid fa-trash-can" id="${cartItem.id}" data-remove="${menuId}"></i>
