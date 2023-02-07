@@ -54,11 +54,6 @@ footer {
   object-fit: cover;
 }
 
-/* icons */
-/* .fa-solid {
-  color: blue;
-} */
-
 .store-info {
   top: 50%;
   left: 50%;
@@ -283,9 +278,9 @@ footer {
   margin-right: 41px;
 }
 
-.items-total-price {
+/* .items-total-price {
   margin-right: 75px;
-}
+} */
 .fa-trash-can {
   color: white;
   background-color: #d9534f;
@@ -310,7 +305,17 @@ footer {
   color: black;
   font-weight: 700;
   padding-top: 17px;
-  flex-direction: column;
+}
+
+.sub-total-el,
+.hst-el {
+  color: #555555;
+}
+
+.price {
+  justify-content: space-between;
+  margin-right: 73px;
+  margin-left: 21px;
 }
 
 .cart-items-section {

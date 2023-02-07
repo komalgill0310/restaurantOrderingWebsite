@@ -60,11 +60,9 @@ function init() {
 function setHtmlContentForTotalPrice() {
   const price = getTotalPrice();
   console.log(price);
-  document.querySelector(".total-price-div").innerHTML = `
-  <span class="sub-total">Subtotal $${price.subTotal}</span>
-  <span class="hst">HST $${price.hst}</span>
-  <span class="total-price">Total Price ${price.totalPrice}</span>
-  `;
+  document.getElementById("sub-total").textContent = `$${price.subTotal}`;
+  document.getElementById("hst").textContent = `$${price.hst}`;
+  document.getElementById("total-price").textContent = `$${price.totalPrice}`;
   // document.getElementById(
   //   "items-total-price"
   // ).textContent = `$${getTotalPrice()}`;
@@ -77,7 +75,7 @@ function getTotalPrice() {
   );
   const subTotalFixDecimalValue = +subTotal.toFixed(2);
   const hst = +(subTotalFixDecimalValue * 0.13).toFixed(2);
-  const totalPrice = subTotalFixDecimalValue + hst;
+  const totalPrice = (subTotalFixDecimalValue + hst).toFixed(2);
   console.log(subTotalFixDecimalValue, hst, totalPrice);
   return {
     subTotal: subTotalFixDecimalValue,
