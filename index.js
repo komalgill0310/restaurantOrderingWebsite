@@ -2,6 +2,7 @@ import { menuArray } from "/data.js";
 import { imagesObj } from "./imageObj.js";
 
 init();
+// displayMessage();
 let orderedItems = [];
 
 function getRandomImagesLink(typeOfImg) {
@@ -14,7 +15,7 @@ function getRandomImagesLink(typeOfImg) {
 
 function init() {
   document.addEventListener("click", (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (e.target.dataset.burgers) {
       console.log("clicked Burgers");
       renderMenu(e.target.dataset.burgers);
@@ -38,13 +39,21 @@ function init() {
       document.querySelector(".checkout-payment-modal-state").style.display =
         "block";
     }
+    if (
+      !e.target.closest(".checkout-payment-modal-state") &&
+      !e.target.closest(".checkout-btn")
+    ) {
+      document.querySelector(".checkout-payment-modal-state").style.display =
+        "none";
+    }
     if (e.target.dataset.close) {
       document.querySelector(".checkout-payment-modal-state").style.display =
         "none";
     }
     if (e.target.dataset.pay) {
-      validateForm();
+      displayMessage();
     }
+
     changeDisplayPropertyOfHtmlElements(
       e.target.dataset.burgers,
       e.target.dataset.sides,
@@ -57,15 +66,24 @@ function init() {
   });
 }
 
+// function checkView(e) {
+//   const paymentModal = document.querySelector(".checkout-payment-modal-state");
+//   // const preCheckout = document.querySelector(".pre-checkout-state");
+//   if (
+//     document.querySelector(".checkout-payment-modal-state").style.display === "block" &&
+//     !e.target.closest(".checkout-payment-modal-state")
+//   ) {
+//     console.log("Yes you are on PreCheckout and Payment Model Screen");
+//     paymentModal.style.display = "none";
+//   }
+// }
+
 function setHtmlContentForTotalPrice() {
   const price = getTotalPrice();
   console.log(price);
   document.getElementById("sub-total").textContent = `$${price.subTotal}`;
   document.getElementById("hst").textContent = `$${price.hst}`;
   document.getElementById("total-price").textContent = `$${price.totalPrice}`;
-  // document.getElementById(
-  //   "items-total-price"
-  // ).textContent = `$${getTotalPrice()}`;
 }
 
 function getTotalPrice() {
@@ -158,22 +176,50 @@ function changeDisplayPropertyOfHtmlElements(
   }
 }
 
-function validateForm() {
-  if (
-    !document.getElementById("name").value ||
-    !document.getElementById("card-number").value ||
-    !document.getElementById("cvv").value
-  ) {
-    alert("Please fill out the payment information");
+function displayMessage() {
+  // document.querySelector("form").addEventListener("click", (e) => {
+  //   e.preventDefault();
+  const msg = validateForm();
+  if (msg) {
+    alert(msg);
+    console.log("hey");
   } else {
-    document.querySelector(".order-complete-state").style.display = "block";
-    document.querySelector(".pre-checkout-state").style.display = "none";
-    document.querySelector(".checkout-payment-modal-state").style.display =
-      "none";
-    document.getElementById("order-on-the-way").innerHTML = `Thanks ${
-      document.getElementById("name").value
-    }! Your order is on the way!`;
+    console.log("need that part yet");
   }
+  // });
+}
+
+function validateForm() {
+  const name = document.getElementById("name").value;
+  const cardNumber = document.getElementById("card-number").value;
+  const cvv = document.getElementById("cvv").value;
+  let errorMessage = "";
+  if (!name) {
+    errorMessage += "Name is required.\n";
+  }
+  if (!cardNumber) {
+    errorMessage += "Card Number is required.\n";
+  }
+  if (!cvv) {
+    errorMessage += "CVV is required.\n";
+  }
+  return errorMessage;
+
+  // if (
+  //   !document.getElementById("name").value ||
+  //   !document.getElementById("card-number").value ||
+  //   !document.getElementById("cvv").value
+  // ) {
+  //   alert("Please fill out the payment information");
+  // } else {
+  //   document.querySelector(".order-complete-state").style.display = "block";
+  //   document.querySelector(".pre-checkout-state").style.display = "none";
+  //   document.querySelector(".checkout-payment-modal-state").style.display =
+  //     "none";
+  //   document.getElementById("order-on-the-way").innerHTML = `Thanks ${
+  //     document.getElementById("name").value
+  //   }! Your order is on the way!`;
+  // }
 }
 
 function getMenuItems(type) {
