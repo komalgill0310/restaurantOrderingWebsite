@@ -1,27 +1,6 @@
 💡 **List out things needs to accomplish in order to submit this project:**
 
-1. Finish the styling for the app✅
-
-   - Style for the Payment Model
-
-2. When click on anywhere on the page, except the payment model, Payment model should disappear✅
-
-   - click will be a mouse click
-     - so I need to listen for the mouse click
-       - When do I need to listen
-         - When the screen is on pre-checkout section and payment model is displaying
-
-- BREAKDOWN:
-  1. Check if the closest element neither payment modal nor complete order button
-
-2. When payment model is active, the background should be disabled.
-
-- the delete icon should be disabled
-- complete order button should be disabled.
-
-4. When user is seeing their cart items, cart should not be visible on the pre-checkout-state page.
-
-5. When user click on Pay button,
+1. When user click on Pay button,✅
 
 - Payment modal should disappear
 - pre-checkout-state should disappear

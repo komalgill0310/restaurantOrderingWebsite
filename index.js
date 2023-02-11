@@ -8,14 +8,12 @@ let orderedItems = [];
 function getRandomImagesLink(typeOfImg) {
   const imgMenuItems = document.querySelector(".header-img");
   const randomNum = Math.floor(Math.random() * imagesObj[typeOfImg].length);
-  // console.log(imagesObj[typeOfImg][randomNum]);
-  // console.log("img: ", imgMenuItems.src);
   imgMenuItems.src = imagesObj[typeOfImg][randomNum];
 }
 
 function init() {
   document.addEventListener("click", (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     if (e.target.dataset.burgers) {
       console.log("clicked Burgers");
       renderMenu(e.target.dataset.burgers);
@@ -46,14 +44,9 @@ function init() {
       document.querySelector(".checkout-payment-modal-state").style.display =
         "none";
     }
-    if (e.target.dataset.close) {
-      document.querySelector(".checkout-payment-modal-state").style.display =
-        "none";
-    }
     if (e.target.dataset.pay) {
       displayMessage();
     }
-
     changeDisplayPropertyOfHtmlElements(
       e.target.dataset.burgers,
       e.target.dataset.sides,
@@ -65,18 +58,6 @@ function init() {
     );
   });
 }
-
-// function checkView(e) {
-//   const paymentModal = document.querySelector(".checkout-payment-modal-state");
-//   // const preCheckout = document.querySelector(".pre-checkout-state");
-//   if (
-//     document.querySelector(".checkout-payment-modal-state").style.display === "block" &&
-//     !e.target.closest(".checkout-payment-modal-state")
-//   ) {
-//     console.log("Yes you are on PreCheckout and Payment Model Screen");
-//     paymentModal.style.display = "none";
-//   }
-// }
 
 function setHtmlContentForTotalPrice() {
   const price = getTotalPrice();
@@ -155,12 +136,16 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".header-img").src = "images/headerImage.avif";
     clearInterval(imagesInterval);
   }
-  if (!orderedItems.length && cartButton) {
-    alert("Your cart is empty🛒");
+  if (!orderedItems.length) {
+    document.querySelector(".cart-items-section").style.display = "none";
   }
 
-  if (orderedItems.length) {
+  if (!pay && orderedItems.length) {
     document.querySelector(".cart-items-section").style.display = "block";
+  }
+
+  if (document.querySelector(".pre-checkout-state").style.display === "block") {
+    document.querySelector(".cart-items-section").style.display = "none";
   }
 
   if (cartButton) {
@@ -171,9 +156,15 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".header").style.display = "none";
     document.querySelector(".cart-items-section").style.display = "none";
   }
-  if (pay) {
-    document.querySelector(".cart-items-section").style.display = "none";
-  }
+  // if (pay) {
+  //   document.querySelector(".cart-items-section").style.display = "none";
+  //   document.querySelector(".pre-checkout-state").style.display = "none";
+  //   document.querySelector(".checkout-payment-modal-state").style.display =
+  //     "none";
+  //   document.querySelector(".header").style.display = "block";
+  //   document.querySelector(".header-img").src = "images/headerImage.avif";
+  //   clearInterval(imagesInterval);
+  // }
 }
 
 function displayMessage() {
@@ -182,11 +173,18 @@ function displayMessage() {
   const msg = validateForm();
   if (msg) {
     alert(msg);
-    console.log("hey");
   } else {
-    console.log("need that part yet");
+    document.querySelector(".pre-checkout-state").style.display = "none";
+    document.querySelector(".checkout-payment-modal-state").style.display =
+      "none";
+    document.querySelector(".cart-items-section").style.display = "none";
+    document.querySelector(".header").style.display = "block";
+    document.querySelector(".header-img").src = "images/headerImage.avif";
+    clearInterval(imagesInterval);
+    document.getElementById("order-on-the-way").innerHTML = `Thanks ${
+      document.getElementById("name").value.split(" ")[0]
+    }! Your order is on the way!`;
   }
-  // });
 }
 
 function validateForm() {

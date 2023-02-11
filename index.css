@@ -172,14 +172,14 @@ footer {
 }
 
 /* buttons */
-.cart-items-btn {
+.fa-cart-shopping {
   padding: 21px;
   background: darkred;
   color: white;
   margin: 10px;
   font-size: 43px;
   font-weight: bold;
-  border-radius: 50%;
+  border-radius: 30%;
   cursor: pointer;
 }
 
