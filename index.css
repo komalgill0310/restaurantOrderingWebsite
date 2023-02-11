@@ -173,13 +173,13 @@ footer {
 
 /* buttons */
 .fa-cart-shopping {
-  padding: 21px;
+  padding: 31px;
   background: darkred;
   color: white;
   margin: 10px;
-  font-size: 43px;
+  font-size: 31px;
   font-weight: bold;
-  border-radius: 30%;
+  border-radius: 50%;
   cursor: pointer;
 }
 
@@ -320,8 +320,32 @@ footer {
 
 .cart-items-section {
   display: none;
+  position: relative;
 }
 
+.total-number-of-cart-items {
+  font-size: 25px;
+  font-weight: 500;
+  top: 47px;
+  left: 67px;
+  position: absolute;
+  background-color: black;
+  color: whitesmoke;
+  padding: 7px;
+  border-radius: 17px;
+}
+
+.total-price-for-cart-items {
+  font-size: 17px;
+  font-weight: 500;
+  top: -23px;
+  left: 28px;
+  position: absolute;
+  background-color: #000000;
+  color: whitesmoke;
+  padding: 11px;
+  border-radius: 17px;
+}
 .checkout-payment-modal-state {
   display: none;
   position: fixed;

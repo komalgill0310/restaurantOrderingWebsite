@@ -2,7 +2,6 @@ import { menuArray } from "/data.js";
 import { imagesObj } from "./imageObj.js";
 
 init();
-// displayMessage();
 let orderedItems = [];
 
 function getRandomImagesLink(typeOfImg) {
@@ -142,6 +141,11 @@ function changeDisplayPropertyOfHtmlElements(
 
   if (!pay && orderedItems.length) {
     document.querySelector(".cart-items-section").style.display = "block";
+    document.getElementById("total-number-of-cart-items").textContent =
+      orderedItems.length;
+    document.getElementById("total-price-for-cart-items").textContent = `$${
+      getTotalPrice().subTotal
+    }`;
   }
 
   if (document.querySelector(".pre-checkout-state").style.display === "block") {
