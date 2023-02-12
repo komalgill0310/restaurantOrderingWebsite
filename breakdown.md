@@ -1,27 +1,5 @@
 💡 **List out things needs to accomplish in order to submit this project:**
 
-6. When the user has added items to their cart, a number on top of the cart should display, the total number of items.✅
-   <!-- BREAKDOWN -->
-   **First Part: Create an element and set its value to total number of items in the cart.**✅
-1. Create a p tag inside cart item section
-
-   - Give it an id = total number of cart items
-   - Give it a class name = total number of cart items
-
-1. Grab that p element in JS, by its id
-1. Set the text content of that element = orderedItems.length
-
-**SECOND PART: Display that p tag on top of the cart icon**
-
-<!-- BREAKDOWN -->
-
-1. CSS Part
-
-2. Display the sub total price on top of the cart icon as well.✅
-<!-- BREAKDOWN -->
-3. Follow the same steps as did for the above step -> for the total number of cart items.
-   **However,** the only difference is that now it will be the sub total(item price only without tax) for the cart items.
-
 4. If an item is already present in the cart and user tried to add the same item, then the item in the cart should display something like that:
 
 - Example:
@@ -32,6 +10,21 @@
 - Sometimes when there are similar items in the cart, user removes few of them and some are still left, the total price gets to 0.
 
 - if there are similar items in the cart and the user delete an item but the similar one is still present in the cart, the array's length decreased by two => Meaning all of the items related to deleted items gets deleted from the cart.
+
+<!-- BREAKDOWN -->
+
+**QUESTIONS:**
+Root Cause: Because each of the similar elements will have same id
+
+**Solution:**
+If each element will have unique Id
+
+<!-- STEPS -->
+
+1. create uuid in data.js for each of the object.
+2. Check if uuid is the same when you call that in js
+
+<!--  -->
 
 9. Alter the position of the footer and made it stick to the bottom of the page.
 
@@ -46,7 +39,7 @@
 - let the user add the review for the item
 - Let the user add rating to their experience.
 
-15. When none of the items are left on the cart, price section should display to none
+15. When none of the items are left in the cart, price section should display to none
 
 16. complete Order button should display to none.
 

@@ -74,7 +74,7 @@ function getTotalPrice() {
   const subTotalFixDecimalValue = +subTotal.toFixed(2);
   const hst = +(subTotalFixDecimalValue * 0.13).toFixed(2);
   const totalPrice = (subTotalFixDecimalValue + hst).toFixed(2);
-  console.log(subTotalFixDecimalValue, hst, totalPrice);
+  // console.log(subTotalFixDecimalValue, hst, totalPrice);
   return {
     subTotal: subTotalFixDecimalValue,
     hst: hst,
@@ -101,12 +101,18 @@ function handleRemoveItemClick(deleteBtnId) {
   setHtmlContentForTotalPrice();
 }
 
+//UPDATES THE ORDEREDITEMS ARRAY WHEN AN ELEMENT GETS DELETED FROM THE DOM
 function deleteItemFromOrderedItemsArray(deleteBtnId) {
   for (let i = 0; i < orderedItems.length; i++) {
+    console.log(
+      `orderedItems[i].id is ${orderedItems[i].id} and deleteBtnId is ${deleteBtnId}`
+    );
     if (orderedItems[i].id === deleteBtnId) {
       orderedItems.splice(i, 1);
+      break;
     }
   }
+  console.log("orderedItems: ", orderedItems);
   return orderedItems;
 }
 
@@ -206,22 +212,6 @@ function validateForm() {
     errorMessage += "CVV is required.\n";
   }
   return errorMessage;
-
-  // if (
-  //   !document.getElementById("name").value ||
-  //   !document.getElementById("card-number").value ||
-  //   !document.getElementById("cvv").value
-  // ) {
-  //   alert("Please fill out the payment information");
-  // } else {
-  //   document.querySelector(".order-complete-state").style.display = "block";
-  //   document.querySelector(".pre-checkout-state").style.display = "none";
-  //   document.querySelector(".checkout-payment-modal-state").style.display =
-  //     "none";
-  //   document.getElementById("order-on-the-way").innerHTML = `Thanks ${
-  //     document.getElementById("name").value
-  //   }! Your order is on the way!`;
-  // }
 }
 
 function getMenuItems(type) {
@@ -254,6 +244,7 @@ function getMenuItemsHtml(menuId) {
   let cartItemHtml = "";
   const cartItemsArray = getOrderedItems(menuId);
   cartItemsArray.forEach((cartItem) => {
+    console.log(`cartItem: ${cartItem.id}`);
     cartItemHtml = `
       <div class="cart-item display-flex">
         <p class="cart-item-name-el">${cartItem.name}</p>
@@ -264,11 +255,13 @@ function getMenuItemsHtml(menuId) {
   return cartItemHtml;
 }
 
+//Pushing the items into an array
 function getOrderedItems(menuId) {
+  const menu = menuArray.filter((menu) => menu.id === menuId);
   let orderItem = {
-    id: menuId,
-    name: menuArray[menuId].name,
-    price: menuArray[menuId].price,
+    id: menu[0].id,
+    name: menu[0].name,
+    price: menu[0].price,
   };
   orderedItems.push(orderItem);
   return orderedItems;
