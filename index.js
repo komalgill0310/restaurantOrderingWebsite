@@ -143,10 +143,14 @@ function changeDisplayPropertyOfHtmlElements(
   }
   if (!orderedItems.length) {
     document.querySelector(".cart-items-section").style.display = "none";
+    document.querySelector(".total-price-div").style.display = "none";
+    document.querySelector(".complete-order").style.display = "none";
   }
 
   if (!pay && orderedItems.length) {
     document.querySelector(".cart-items-section").style.display = "block";
+    document.querySelector(".total-price-div").style.display = "block";
+    document.querySelector(".complete-order").style.display = "block";
     document.getElementById("total-number-of-cart-items").textContent =
       orderedItems.length;
     document.getElementById("total-price-for-cart-items").textContent = `$${

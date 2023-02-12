@@ -5,27 +5,6 @@
 - Example:
   - cartItemName x total number of items price should be double
 
-8. Bug:
-
-- Sometimes when there are similar items in the cart, user removes few of them and some are still left, the total price gets to 0.
-
-- if there are similar items in the cart and the user delete an item but the similar one is still present in the cart, the array's length decreased by two => Meaning all of the items related to deleted items gets deleted from the cart.
-
-<!-- BREAKDOWN -->
-
-**QUESTIONS:**
-Root Cause: Because each of the similar elements will have same id
-
-**Solution:**
-If each element will have unique Id
-
-<!-- STEPS -->
-
-1. create uuid in data.js for each of the object.
-2. Check if uuid is the same when you call that in js
-
-<!--  -->
-
 9. Alter the position of the footer and made it stick to the bottom of the page.
 
 10. Code Refactoring
@@ -39,9 +18,17 @@ If each element will have unique Id
 - let the user add the review for the item
 - Let the user add rating to their experience.
 
-15. When none of the items are left in the cart, price section should display to none
+15. When none of the items are left in the cart, price section should display to none AND complete Order button should display to none.
 
-16. complete Order button should display to none.
+- QUESTION: Which section displays the price and which class holds the "COMPLETE ORDER" BUTTON
+  1. div with a class name of "total-price-div" holds the price section
+  2. div with a class name of "complete-order" holds the complete order button.
+
+<!-- BREAKDOWN -->
+
+1. When orderedItems.length === 0
+
+- div with a class name of "total-price-div" and "complete-order" will have their display property set to "none"
 
 <!-- BREAKDOWN THE EVENT LISTENERS INTO THEIR OWN PART -->
 
