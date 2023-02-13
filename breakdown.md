@@ -11,24 +11,16 @@
 
 11. Change variable names to more descriptive names
 
-12. Style the back button below the header so user can see it.
+12. Style the back button below the header so users can see it.✅
+    <!-- BREAKDOWN -->
+
+    1. Instead of having text for Back Button, replace it with an icon✅
+    2. Create back button inside the header image and set its position to absolute✅
 
 13. If there is time:
 
 - let the user add the review for the item
 - Let the user add rating to their experience.
-
-15. When none of the items are left in the cart, price section should display to none AND complete Order button should display to none.
-
-- QUESTION: Which section displays the price and which class holds the "COMPLETE ORDER" BUTTON
-  1. div with a class name of "total-price-div" holds the price section
-  2. div with a class name of "complete-order" holds the complete order button.
-
-<!-- BREAKDOWN -->
-
-1. When orderedItems.length === 0
-
-- div with a class name of "total-price-div" and "complete-order" will have their display property set to "none"
 
 <!-- BREAKDOWN THE EVENT LISTENERS INTO THEIR OWN PART -->
 

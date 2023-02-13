@@ -102,6 +102,7 @@ footer {
   width: 100%;
   line-height: 250px;
   margin-top: 10px;
+  margin-bottom: 21px;
 }
 
 .menu-section-after-click {
@@ -116,6 +117,7 @@ footer {
   padding: 21px;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 71px;
 }
 
 .menu-item-info {
@@ -278,9 +280,6 @@ footer {
   margin-right: 41px;
 }
 
-/* .items-total-price {
-  margin-right: 75px;
-} */
 .fa-trash-can {
   color: white;
   background-color: #d9534f;
@@ -290,6 +289,16 @@ footer {
   cursor: pointer;
   margin-top: 17px;
   margin-right: 13px;
+}
+
+.fa-backward {
+  background-color: rgb(96, 96, 179);
+  padding: 21px;
+  color: white;
+  font-size: 31px;
+  font-weight: 500;
+  border-radius: 50%;
+  cursor: pointer;
 }
 .add-more-to-order {
   background-color: lightcoral;
@@ -399,55 +408,9 @@ input[type="text"] {
 .fa-square-xmark {
   padding: 17px;
   font-size: 41px;
-  /* border-radius: 36px; */
   color: red;
-  /* margin-left: auto; */
   position: relative;
   top: 0;
   left: 0;
   margin-bottom: 0;
 }
-
-/* Styling for previous Working App version */
-/* h1 {
-  margin: 0;
-}
-
-.menu {
-  display: flex;
-  flex-direction: column;
-  border: 2px solid red;
-  justify-content: space-around;
-}
-
-.pre-checkout-state {
-  display: none;
-}
-
-.checkout-payment-modal-state {
-  display: none;
-}
-
-form {
-  border: 2px solid red;
-  display: inline-block;
-  background-color: pink;
-  position: fixed;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 543px;
-  width: 524px;
-}
-
-input {
-  margin: 12px;
-  padding: 17px;
-  display: block;
-}
-
-.order-complete-state {
-  display: none;
-} */
