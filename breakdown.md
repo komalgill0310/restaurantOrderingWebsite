@@ -5,19 +5,13 @@
 - Example:
   - cartItemName x total number of items price should be double
 
-9. Alter the position of the footer and made it stick to the bottom of the page.
+9. Alter the position of the footer and made it stick to the bottom of the page.✅
 
 10. Code Refactoring
 
 11. Change variable names to more descriptive names
 
-12. Style the back button below the header so users can see it.✅
-    <!-- BREAKDOWN -->
-
-    1. Instead of having text for Back Button, replace it with an icon✅
-    2. Create back button inside the header image and set its position to absolute✅
-
-13. If there is time:
+12. If there is time:
 
 - let the user add the review for the item
 - Let the user add rating to their experience.

@@ -1,10 +1,24 @@
+html,
 body {
+  height: 100%;
   margin: 0;
-  padding: 0;
+}
+
+body {
   font-family: "Domine", serif;
 }
 
 /* common properties */
+
+.container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
 
 .position-relative {
   position: relative;
@@ -44,7 +58,7 @@ footer {
   font-weight: 500px;
   text-align: center;
   width: 100%;
-  bottom: 0;
+  /* margin-top: auto; */
 }
 
 /* images */
@@ -171,6 +185,7 @@ footer {
   display: none;
   margin: 17px;
   padding: 13px;
+  flex-direction: column;
 }
 
 /* buttons */

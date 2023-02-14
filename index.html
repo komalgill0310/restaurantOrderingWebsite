@@ -30,226 +30,157 @@
 
   <body>
     <div class="container">
-      <header class="header display-flex position-relative">
-        <img
-          class="header-img"
-          src="images/headerImage.avif"
-          alt="pepproni pizza slice"
-        />
-        <div class="store-info position-absolute">
-          <h1 class="store-name">PizzaWind</h1>
-          <h3 class="address">289 James Potter, Ontario</h3>
-          <h4 class="phone-number">123-456-7891</h4>
-        </div>
-        <div class="back-btn position-absolute">
-          <i
-            class="fa-solid fa-backward"
-            data-menu-sections="menu-sections"
-          ></i>
-        </div>
-      </header>
+      <div class="content">
+        <header class="header display-flex position-relative">
+          <img
+            class="header-img"
+            src="images/headerImage.avif"
+            alt="pepproni pizza slice"
+          />
+          <div class="store-info position-absolute">
+            <h1 class="store-name">PizzaWind</h1>
+            <h3 class="address">289 James Potter, Ontario</h3>
+            <h4 class="phone-number">123-456-7891</h4>
+          </div>
+          <div class="back-btn position-absolute">
+            <i
+              class="fa-solid fa-backward"
+              data-menu-sections="menu-sections"
+            ></i>
+          </div>
+        </header>
 
-      <main>
-        <section>
-          <div class="menu-section-before-click display-flex">
-            <div class="burger-sides-drink display-flex">
-              <div class="menu-items-section" data-burgers="burgers">
-                Burgers
+        <main>
+          <section>
+            <div class="menu-section-before-click display-flex">
+              <div class="burger-sides-drink display-flex">
+                <div class="menu-items-section" data-burgers="burgers">
+                  Burgers
+                </div>
+                <div class="menu-items-section" data-sides="sides">Sides</div>
+                <div class="menu-items-section" data-drinks="drinks">
+                  Drinks
+                </div>
               </div>
-              <div class="menu-items-section" data-sides="sides">Sides</div>
-              <div class="menu-items-section" data-drinks="drinks">Drinks</div>
-            </div>
-            <div>
-              <div class="menu-items-section" id="pizza-div" data-pizza="pizza">
-                Pizza
+              <div>
+                <div
+                  class="menu-items-section"
+                  id="pizza-div"
+                  data-pizza="pizza"
+                >
+                  Pizza
+                </div>
               </div>
             </div>
-          </div>
-          <div class="menu-section-after-click">
-            <div id="menu-items" class="menu-items display-flex"></div>
-          </div>
-          <!-- <div class="back-btn">
+            <div class="menu-section-after-click">
+              <div id="menu-items" class="menu-items display-flex"></div>
+            </div>
+            <!-- <div class="back-btn">
             <i
               class="fa-solid fa-backward"
               data-menu-sections="menu-sections"
             ></i>
           </div> -->
+          </section>
+        </main>
+
+        <section class="pre-checkout-state display-flex">
+          <div class="your-order-text-add-More-checout-btn">
+            <h1 class="your-order-text">Your Order</h1>
+            <button
+              id="add-more-to-order-btn"
+              class="add-more-to-order-btn"
+              data-menu-sections="menu-sections"
+            >
+              Add more
+            </button>
+          </div>
+
+          <div class="cart-items-total-price-div">
+            <div class="product-price-div display-flex">
+              <p class="product-el">Product</p>
+              <p class="price-el">Price</p>
+            </div>
+            <div class="ordered-items" id="ordered-items"></div>
+            <div class="total-price-div">
+              <p class="price display-flex">
+                <span class="sub-total-el">Subtotal</span>
+                <span class="sub-total-el" id="sub-total"></span>
+              </p>
+              <p class="price display-flex">
+                <span class="hst-el">HST</span>
+                <span class="hst-el" id="hst"></span>
+              </p>
+              <p class="price display-flex">
+                <span class="total-price-el">Total price:</span>
+                <span class="total-price-el" id="total-price"></span>
+              </p>
+            </div>
+
+            <div class="complete-order">
+              <button
+                id="checkout-btn"
+                class="checkout-btn"
+                data-checkout="checkout"
+              >
+                Complete Order
+              </button>
+            </div>
+          </div>
         </section>
-      </main>
 
-      <section class="pre-checkout-state">
-        <div class="your-order-text-add-More-checout-btn">
-          <h1 class="your-order-text">Your Order</h1>
-          <button
-            id="add-more-to-order-btn"
-            class="add-more-to-order-btn"
-            data-menu-sections="menu-sections"
-          >
-            Add more
-          </button>
-        </div>
+        <section class="cart-items-section">
+          <p
+            class="total-price-for-cart-items"
+            id="total-price-for-cart-items"
+          ></p>
+          <i class="fa-solid fa-cart-shopping" data-cart-icon="cart-icon"></i>
+          <p
+            class="total-number-of-cart-items"
+            id="total-number-of-cart-items"
+          ></p>
+        </section>
 
-        <div class="cart-items-total-price-div display-flex">
-          <div class="product-price-div display-flex">
-            <p class="product-el">Product</p>
-            <p class="price-el">Price</p>
+        <section class="checkout-payment-modal-state">
+          <div class="payment-information" id="payment-information">
+            <form>
+              <h2 class="modal-title">Enter Payment information</h2>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+              />
+              <input
+                type="text"
+                id="card-number"
+                placeholder="Enter card number"
+                required
+              />
+              <input type="text" id="cvv" placeholder="Enter CVV" required />
+              <button
+                type="submit"
+                class="checkout-btn"
+                id="pay-btn"
+                data-pay="pay"
+              >
+                Pay
+              </button>
+            </form>
           </div>
-          <div class="ordered-items" id="ordered-items"></div>
-          <div class="total-price-div">
-            <p class="price display-flex">
-              <span class="sub-total-el">Subtotal</span>
-              <span class="sub-total-el" id="sub-total"></span>
-            </p>
-            <p class="price display-flex">
-              <span class="hst-el">HST</span>
-              <span class="hst-el" id="hst"></span>
-            </p>
-            <p class="price display-flex">
-              <span class="total-price-el">Total price:</span>
-              <span class="total-price-el" id="total-price"></span>
-            </p>
-          </div>
+        </section>
 
-          <div class="complete-order">
-            <button
-              id="checkout-btn"
-              class="checkout-btn"
-              data-checkout="checkout"
-            >
-              Complete Order
-            </button>
-          </div>
-        </div>
-      </section>
+        <section class="order-complete-state">
+          <h1 id="order-on-the-way"></h1>
+        </section>
+      </div>
 
-      <section class="cart-items-section">
-        <p
-          class="total-price-for-cart-items"
-          id="total-price-for-cart-items"
-        ></p>
-        <i class="fa-solid fa-cart-shopping" data-cart-icon="cart-icon"></i>
-        <p
-          class="total-number-of-cart-items"
-          id="total-number-of-cart-items"
-        ></p>
-      </section>
-
-      <section class="checkout-payment-modal-state">
-        <div class="payment-information" id="payment-information">
-          <form>
-            <h2 class="modal-title">Enter Payment information</h2>
-            <input
-              type="text"
-              id="name"
-              placeholder="Enter your name"
-              required
-            />
-            <input
-              type="text"
-              id="card-number"
-              placeholder="Enter card number"
-              required
-            />
-            <input type="text" id="cvv" placeholder="Enter CVV" required />
-            <button
-              type="submit"
-              class="checkout-btn"
-              id="pay-btn"
-              data-pay="pay"
-            >
-              Pay
-            </button>
-          </form>
-        </div>
-      </section>
-
-      <section class="order-complete-state">
-        <h1 id="order-on-the-way"></h1>
-      </section>
-
-      <!-- <footer class="position-absolute">
+      <footer>
         <p>
           © 2023 All Rights Reserved Terms of Use and Privacy Policy. PizzaWind
         </p>
-      </footer> -->
+      </footer>
     </div>
     <script src="index.js" type="module"></script>
   </body>
 </html>
-
-<!-- Working code for the Initial Requirements for Restaurant Ordering App -->
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
-    <title>Restaurant Ordering App</title>
-  </head>
-
-  <body>
-
-    <div class="container">
-      <header class="pizza-burger-img">
-        <h1>Jimmy's Diner</h1>
-        <p>The best burgers and pizzas in town.</p>
-      </header>
-
-      <main>
-        <section id="menu">
-          <div class="menu" id="menu-items">
-             Menu-items 
-          </div>
-        </section>
-      </main>
-
-      <section class="pre-checkout-state">
-        <div>
-          <h1 class="your-order-text">Your Order</h1>
-        </div>
-
-        <div class="ordered-items" id="ordered-items">
-           Order-items 
-        </div>
-
-        <div class="place-order-btn">
-          <h2 id="total-price"></h2>
-          <button id="complete-order-btn" data-complete="completeOrder">Complete Order</button>
-        </div>
-      </section>
-
-      <section class="checkout-payment-modal-state">
-        <div class="payment-information" id="payment-information">   
-
-          <form>                  
-          <div class="close-modal-btn-container">
-            <button class="modal-checkout-payment-close-btn" id="modal-checkout-payment-close-btn" data-close="close-payment-modal">X</button>
-          </div>
-
-            <input type="text" 
-            id="name"
-            placeholder="Enter your name"                   required />
-            <input type="text"   
-            id="card-number"
-            placeholder="Enter card number"                     required />
-            <input type="text" 
-            id="cvv"       
-            placeholder="Enter CVV"
-            required />
-            <button type="submit" data-pay="pay">Pay</button>
-          </form>
-
-        </div>
-
-      </section>
-
-      <section class="order-complete-state">
-        <h1 id="order-on-the-way"></h1>
-      </section>
-
-    <script src="index.js" type="module"></script>
-  </body>
-</html> -->
