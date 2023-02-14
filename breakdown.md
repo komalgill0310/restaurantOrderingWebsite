@@ -5,13 +5,18 @@
 - Example:
   - cartItemName x total number of items price should be double
 
-9. Alter the position of the footer and made it stick to the bottom of the page.✅
-
 10. Code Refactoring
+    <!-- Breakdown -->
+    **Update HTML First:**
+1. Update the layout
+1. Update the variable names
 
-11. Change variable names to more descriptive names
+1. Change variable names to more descriptive names
 
-12. If there is time:
+- First update the names for the header section
+  - update them in HTML, CSS & JS file✅
+
+1. If there is time:
 
 - let the user add the review for the item
 - Let the user add rating to their experience.

@@ -51,7 +51,7 @@ function init() {
       e.target.dataset.sides,
       e.target.dataset.drinks,
       e.target.dataset.pizza,
-      e.target.dataset.menuSections,
+      e.target.dataset.homePage,
       e.target.dataset.cartIcon,
       e.target.dataset.pay
     );
@@ -119,7 +119,7 @@ function changeDisplayPropertyOfHtmlElements(
   sidesMenu,
   drinksMenu,
   pizzaMenu,
-  menuSections,
+  homePage,
   cartButton,
   pay
 ) {
@@ -128,7 +128,7 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".menu-section-after-click").style.display = "block";
     document.querySelector(".menu-section-before-click").style.display = "none";
   }
-  if (menuSections) {
+  if (homePage) {
     document.querySelector(".back-btn").style.display = "none";
     document.querySelector(".pre-checkout-state").style.display = "none";
     document.querySelector(".menu-section-after-click").style.display = "none";
