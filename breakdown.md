@@ -13,8 +13,10 @@
 
 1. Change variable names to more descriptive names
 
-- First update the names for the header section
-  - update them in HTML, CSS & JS file✅
+- First update the names for the header section✅
+  - update them in HTML, CSS & JS file
+- Update the names for the Main section✅
+  - update them in HTML, CSS & JS file
 
 1. If there is time:
 

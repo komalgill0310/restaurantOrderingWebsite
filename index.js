@@ -125,15 +125,14 @@ function changeDisplayPropertyOfHtmlElements(
 ) {
   if (burgerMenu || sidesMenu || drinksMenu || pizzaMenu) {
     document.querySelector(".back-btn").style.display = "block";
-    document.querySelector(".menu-section-after-click").style.display = "block";
-    document.querySelector(".menu-section-before-click").style.display = "none";
+    document.querySelector(".active-menu-section").style.display = "block";
+    document.querySelector(".initial-menu-state").style.display = "none";
   }
   if (homePage) {
     document.querySelector(".back-btn").style.display = "none";
     document.querySelector(".pre-checkout-state").style.display = "none";
-    document.querySelector(".menu-section-after-click").style.display = "none";
-    document.querySelector(".menu-section-before-click").style.display =
-      "block";
+    document.querySelector(".active-menu-section").style.display = "none";
+    document.querySelector(".initial-menu-state").style.display = "block";
     document.querySelector(".cart-items-section").style.display = "block";
     document.querySelector(".header").style.display = "block";
     document.querySelector(".header-img").src = "images/headerImage.avif";
@@ -162,8 +161,8 @@ function changeDisplayPropertyOfHtmlElements(
 
   if (cartButton) {
     document.querySelector(".back-btn").style.display = "none";
-    document.querySelector(".menu-section-after-click").style.display = "none";
-    document.querySelector(".menu-section-before-click").style.display = "none";
+    document.querySelector(".active-menu-section").style.display = "none";
+    document.querySelector(".initial-menu-state").style.display = "none";
     document.querySelector(".pre-checkout-state").style.display = "block";
     document.querySelector(".header").style.display = "none";
     document.querySelector(".cart-items-section").style.display = "none";

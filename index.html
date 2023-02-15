@@ -49,27 +49,23 @@
 
         <main>
           <section>
-            <div class="menu-section-before-click display-flex">
-              <div class="burger-sides-drink display-flex">
-                <div class="menu-items-section" data-burgers="burgers">
+            <div class="initial-menu-state display-flex">
+              <div class="burgers-sides-drinks display-flex">
+                <div class="menu-section-items" data-burgers="burgers">
                   Burgers
                 </div>
-                <div class="menu-items-section" data-sides="sides">Sides</div>
-                <div class="menu-items-section" data-drinks="drinks">
+
+                <div class="menu-section-items" data-sides="sides">Sides</div>
+
+                <div class="menu-section-items" data-drinks="drinks">
                   Drinks
                 </div>
               </div>
-              <div>
-                <div
-                  class="menu-items-section"
-                  id="pizza-div"
-                  data-pizza="pizza"
-                >
-                  Pizza
-                </div>
+              <div class="menu-section-items" id="pizza-div" data-pizza="pizza">
+                Pizza
               </div>
             </div>
-            <div class="menu-section-after-click">
+            <div class="active-menu-section">
               <div id="menu-items" class="menu-items display-flex"></div>
             </div>
           </section>

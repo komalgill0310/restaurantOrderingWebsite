@@ -2,6 +2,8 @@ html,
 body {
   height: 100%;
   margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 body {
@@ -14,10 +16,14 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
 }
 
 .content {
   flex: 1;
+  margin: 0;
+  padding: 0;
 }
 
 .position-relative {
@@ -36,18 +42,21 @@ body {
 
 .header {
   height: 400px;
-  margin-bottom: 21px;
+  margin: 0 0 21px;
 }
 
-.menu-section-before-click {
+.initial-menu-state {
   flex-direction: column;
   text-align: center;
+  /* width: 100%; */
 }
 
-.burger-sides-drink {
+.burgers-sides-drinks {
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: nowrap;
+  margin: 0;
+  padding: 0;
 }
 
 footer {
@@ -96,7 +105,7 @@ footer {
   margin-top: 0;
 }
 
-.menu-items-section {
+.menu-section-items {
   width: 850px;
   height: 265px;
   text-align: center;
@@ -109,7 +118,7 @@ footer {
   border-radius: 50px;
   background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
   text-shadow: 2px 3px #ff006e;
-  margin: 3px;
+  margin: 3px 0px 3px 3px;
 }
 
 #pizza-div {
@@ -119,7 +128,7 @@ footer {
   margin-bottom: 21px;
 }
 
-.menu-section-after-click {
+.active-menu-state {
   display: none;
 }
 
