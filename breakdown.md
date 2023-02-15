@@ -17,6 +17,8 @@
   - update them in HTML, CSS & JS file
 - Update the names for the Main section✅
   - update them in HTML, CSS & JS file
+- Update teh names for the pre-checkout-state
+  - update them in HTML, CSS and JS File
 
 1. If there is time:
 

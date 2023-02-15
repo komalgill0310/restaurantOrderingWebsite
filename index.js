@@ -32,13 +32,13 @@ function init() {
     if (e.target.dataset.remove) {
       handleRemoveItemClick(e.target.id);
     }
-    if (e.target.dataset.checkout) {
+    if (e.target.dataset.completeOrder) {
       document.querySelector(".checkout-payment-modal-state").style.display =
         "block";
     }
     if (
       !e.target.closest(".checkout-payment-modal-state") &&
-      !e.target.closest(".checkout-btn")
+      !e.target.closest(".complete-order-btn")
     ) {
       document.querySelector(".checkout-payment-modal-state").style.display =
         "none";
@@ -133,30 +133,30 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".pre-checkout-state").style.display = "none";
     document.querySelector(".active-menu-section").style.display = "none";
     document.querySelector(".initial-menu-state").style.display = "block";
-    document.querySelector(".cart-items-section").style.display = "block";
+    document.querySelector(".cart-icon-section").style.display = "block";
     document.querySelector(".header").style.display = "block";
     document.querySelector(".header-img").src = "images/headerImage.avif";
     clearInterval(imagesInterval);
   }
   if (!orderedItems.length) {
-    document.querySelector(".cart-items-section").style.display = "none";
-    document.querySelector(".total-price-div").style.display = "none";
+    document.querySelector(".cart-icon-section").style.display = "none";
+    document.querySelector(".cart-price-div").style.display = "none";
     document.querySelector(".complete-order").style.display = "none";
   }
 
   if (!pay && orderedItems.length) {
-    document.querySelector(".cart-items-section").style.display = "block";
-    document.querySelector(".total-price-div").style.display = "block";
+    document.querySelector(".cart-icon-section").style.display = "block";
+    document.querySelector(".cart-price-div").style.display = "block";
     document.querySelector(".complete-order").style.display = "block";
-    document.getElementById("total-number-of-cart-items").textContent =
+    document.getElementById("cart-total-objects").textContent =
       orderedItems.length;
-    document.getElementById("total-price-for-cart-items").textContent = `$${
+    document.getElementById("cart-items-sub-total").textContent = `$${
       getTotalPrice().subTotal
     }`;
   }
 
   if (document.querySelector(".pre-checkout-state").style.display === "block") {
-    document.querySelector(".cart-items-section").style.display = "none";
+    document.querySelector(".cart-icon-section").style.display = "none";
   }
 
   if (cartButton) {
@@ -165,7 +165,7 @@ function changeDisplayPropertyOfHtmlElements(
     document.querySelector(".initial-menu-state").style.display = "none";
     document.querySelector(".pre-checkout-state").style.display = "block";
     document.querySelector(".header").style.display = "none";
-    document.querySelector(".cart-items-section").style.display = "none";
+    document.querySelector(".cart-icon-section").style.display = "none";
   }
 }
 
@@ -177,11 +177,11 @@ function displayMessage() {
     document.querySelector(".pre-checkout-state").style.display = "none";
     document.querySelector(".checkout-payment-modal-state").style.display =
       "none";
-    document.querySelector(".cart-items-section").style.display = "none";
+    document.querySelector(".cart-icon-section").style.display = "none";
     document.querySelector(".header").style.display = "block";
     document.querySelector(".header-img").src = "images/headerImage.avif";
     clearInterval(imagesInterval);
-    document.getElementById("order-on-the-way").innerHTML = `Thanks ${
+    document.getElementById("order-on-the-way-text").textContent = `Thanks ${
       document.getElementById("name").value.split(" ")[0]
     }! Your order is on the way!`;
   }
@@ -201,6 +201,9 @@ function validateForm() {
   if (!cvv) {
     errorMessage += "CVV is required.\n";
   }
+  // if (cardNumber.length > 15) {
+  //   errorMessage += "Please enter Valid card number.\n";
+  // }
   return errorMessage;
 }
 
@@ -222,8 +225,7 @@ function getMenuItems(type) {
 }
 
 function renderOrderedItems(menuId) {
-  document.getElementById("ordered-items").innerHTML +=
-    getMenuItemsHtml(menuId);
+  document.getElementById("cart-items").innerHTML += getMenuItemsHtml(menuId);
 }
 
 function deleteElementFromDom(deleteBtnId) {
@@ -237,8 +239,8 @@ function getMenuItemsHtml(menuId) {
     console.log(`cartItem: ${cartItem.id}`);
     cartItemHtml = `
       <div class="cart-item display-flex">
-        <p class="cart-item-name-el">${cartItem.name}</p>
-        <p class="cart-item-price-el">$${cartItem.price}</p>
+        <p class="cart-item-name">${cartItem.name}</p>
+        <p class="cart-item-price">$${cartItem.price}</p>
         <i class="fa-solid fa-trash-can" id="${cartItem.id}" data-remove="${menuId}"></i>
       </div>`;
   });

@@ -72,43 +72,43 @@
         </main>
 
         <section class="pre-checkout-state display-flex">
-          <div class="your-order-text-add-More-checout-btn">
+          <div class="pre-checkout-state-title">
             <h1 class="your-order-text">Your Order</h1>
             <button
-              id="add-more-to-order-btn"
-              class="add-more-to-order-btn"
+              id="add-more-btn"
+              class="add-more-btn"
               data-home-page="home-page"
             >
               Add more
             </button>
           </div>
 
-          <div class="cart-items-total-price-div">
-            <div class="product-price-div display-flex">
-              <p class="product-el">Product</p>
-              <p class="price-el">Price</p>
+          <div class="cart">
+            <div class="cart-title display-flex">
+              <p class="product">Product</p>
+              <p class="price">Price</p>
             </div>
-            <div class="ordered-items" id="ordered-items"></div>
-            <div class="total-price-div">
+            <div class="cart-items" id="cart-items"></div>
+            <div class="cart-price-div">
               <p class="price display-flex">
-                <span class="sub-total-el">Subtotal</span>
-                <span class="sub-total-el" id="sub-total"></span>
+                <span class="sub-total">Subtotal</span>
+                <span class="sub-total" id="sub-total"></span>
               </p>
               <p class="price display-flex">
-                <span class="hst-el">HST</span>
-                <span class="hst-el" id="hst"></span>
+                <span class="hst">HST</span>
+                <span class="hst" id="hst"></span>
               </p>
               <p class="price display-flex">
-                <span class="total-price-el">Total price:</span>
-                <span class="total-price-el" id="total-price"></span>
+                <span class="total-price">Total price:</span>
+                <span class="total-price" id="total-price"></span>
               </p>
             </div>
 
             <div class="complete-order">
               <button
-                id="checkout-btn"
-                class="checkout-btn"
-                data-checkout="checkout"
+                id="complete-order-btn"
+                class="complete-order-btn"
+                data-complete-order="complete-order"
               >
                 Complete Order
               </button>
@@ -116,22 +116,16 @@
           </div>
         </section>
 
-        <section class="cart-items-section">
-          <p
-            class="total-price-for-cart-items"
-            id="total-price-for-cart-items"
-          ></p>
+        <section class="cart-icon-section">
+          <p class="cart-items-sub-total" id="cart-items-sub-total"></p>
           <i class="fa-solid fa-cart-shopping" data-cart-icon="cart-icon"></i>
-          <p
-            class="total-number-of-cart-items"
-            id="total-number-of-cart-items"
-          ></p>
+          <p class="cart-total-objects" id="cart-total-objects"></p>
         </section>
 
         <section class="checkout-payment-modal-state">
-          <div class="payment-information" id="payment-information">
+          <div class="payment-modal" id="payment-modal">
             <form>
-              <h2 class="modal-title">Enter Payment information</h2>
+              <h2 class="payment-modal-title">Enter Payment information</h2>
               <input
                 type="text"
                 id="name"
@@ -145,12 +139,7 @@
                 required
               />
               <input type="text" id="cvv" placeholder="Enter CVV" required />
-              <button
-                type="submit"
-                class="checkout-btn"
-                id="pay-btn"
-                data-pay="pay"
-              >
+              <button type="submit" class="pay-btn" id="pay-btn" data-pay="pay">
                 Pay
               </button>
             </form>
@@ -158,7 +147,7 @@
         </section>
 
         <section class="order-complete-state">
-          <h1 id="order-on-the-way"></h1>
+          <h1 id="order-on-the-way-text"></h1>
         </section>
       </div>
 
