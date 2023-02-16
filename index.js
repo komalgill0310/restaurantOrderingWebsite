@@ -216,7 +216,7 @@ function getMenuItems(type) {
         <p class="menu-item-ingredients">${menuItem.ingredients}</p>
         <p class="menu-item-price">$${menuItem.price}</p>
         <div class="add-to-cart-btn">
-        <button class="online-order-btn" data-add="${menuItem.id}">Online Order</button>
+        <button class="online-order-btn cursor-pointer" data-add="${menuItem.id}">Online Order</button>
       </div>
       </div>
 `;
@@ -241,7 +241,7 @@ function getMenuItemsHtml(menuId) {
       <div class="cart-item display-flex">
         <p class="cart-item-name">${cartItem.name}</p>
         <p class="cart-item-price">$${cartItem.price}</p>
-        <i class="fa-solid fa-trash-can" id="${cartItem.id}" data-remove="${menuId}"></i>
+        <i class="fa-solid fa-trash-can cursor-pointer" id="${cartItem.id}" data-remove="${menuId}"></i>
       </div>`;
   });
   return cartItemHtml;

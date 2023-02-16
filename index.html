@@ -28,9 +28,9 @@
     <title>PizzaWind</title>
   </head>
 
-  <body>
-    <div class="container">
-      <div class="content">
+  <body class="zero-margin zero-padding">
+    <div class="container display-flex zero-margin zero-padding">
+      <div class="content zero-margin zero-padding">
         <header class="header display-flex position-relative">
           <img
             class="header-img"
@@ -42,26 +42,46 @@
             <h3 class="store-address">289 James Potter, Ontario</h3>
             <h4 class="store-phone-number">123-456-7891</h4>
           </div>
-          <div class="back-btn position-absolute">
-            <i class="fa-solid fa-backward" data-home-page="home-page"></i>
+          <div class="back-btn position-absolute display-none">
+            <i
+              class="fa-solid fa-backward cursor-pointer"
+              data-home-page="home-page"
+            ></i>
           </div>
         </header>
 
         <main>
           <section>
             <div class="initial-menu-state display-flex">
-              <div class="burgers-sides-drinks display-flex">
-                <div class="menu-section-items" data-burgers="burgers">
+              <div
+                class="burgers-sides-drinks display-flex zero-margin zero-padding"
+              >
+                <div
+                  class="menu-section-items cursor-pointer"
+                  data-burgers="burgers"
+                >
                   Burgers
                 </div>
 
-                <div class="menu-section-items" data-sides="sides">Sides</div>
+                <div
+                  class="menu-section-items cursor-pointer"
+                  data-sides="sides"
+                >
+                  Sides
+                </div>
 
-                <div class="menu-section-items" data-drinks="drinks">
+                <div
+                  class="menu-section-items cursor-pointer"
+                  data-drinks="drinks"
+                >
                   Drinks
                 </div>
               </div>
-              <div class="menu-section-items" id="pizza-div" data-pizza="pizza">
+              <div
+                class="menu-section-items cursor-pointer pizza-div"
+                id="pizza-div"
+                data-pizza="pizza"
+              >
                 Pizza
               </div>
             </div>
@@ -71,12 +91,12 @@
           </section>
         </main>
 
-        <section class="pre-checkout-state display-flex">
-          <div class="pre-checkout-state-title">
+        <section class="pre-checkout-state display-flex display-none">
+          <div class="pre-checkout-state-title display-flex">
             <h1 class="your-order-text">Your Order</h1>
             <button
               id="add-more-btn"
-              class="add-more-btn"
+              class="add-more-btn cursor-pointer"
               data-home-page="home-page"
             >
               Add more
@@ -84,7 +104,7 @@
           </div>
 
           <div class="cart">
-            <div class="cart-title display-flex">
+            <div class="cart-title display-flex zero-padding">
               <p class="product">Product</p>
               <p class="price">Price</p>
             </div>
@@ -107,7 +127,7 @@
             <div class="complete-order">
               <button
                 id="complete-order-btn"
-                class="complete-order-btn"
+                class="complete-order-btn cursor-pointer"
                 data-complete-order="complete-order"
               >
                 Complete Order
@@ -116,15 +136,26 @@
           </div>
         </section>
 
-        <section class="cart-icon-section">
-          <p class="cart-items-sub-total" id="cart-items-sub-total"></p>
-          <i class="fa-solid fa-cart-shopping" data-cart-icon="cart-icon"></i>
-          <p class="cart-total-objects" id="cart-total-objects"></p>
+        <section class="cart-icon-section position-relative display-none">
+          <p
+            class="cart-items-sub-total position-absolute"
+            id="cart-items-sub-total"
+          ></p>
+          <i
+            class="fa-solid fa-cart-shopping cursor-pointer"
+            data-cart-icon="cart-icon"
+          ></i>
+          <p
+            class="cart-total-objects position-absolute"
+            id="cart-total-objects"
+          ></p>
         </section>
 
-        <section class="checkout-payment-modal-state">
+        <section
+          class="checkout-payment-modal-state position-absolute display-none"
+        >
           <div class="payment-modal" id="payment-modal">
-            <form>
+            <form class="form">
               <h2 class="payment-modal-title">Enter Payment information</h2>
               <input
                 type="text"
@@ -139,7 +170,12 @@
                 required
               />
               <input type="text" id="cvv" placeholder="Enter CVV" required />
-              <button type="submit" class="pay-btn" id="pay-btn" data-pay="pay">
+              <button
+                type="submit"
+                class="pay-btn cursor-pointer"
+                id="pay-btn"
+                data-pay="pay"
+              >
                 Pay
               </button>
             </form>
@@ -147,11 +183,11 @@
         </section>
 
         <section class="order-complete-state">
-          <h1 id="order-on-the-way-text"></h1>
+          <h1 id="order-on-the-way-text" class="order-on-the-way-text"></h1>
         </section>
       </div>
 
-      <footer>
+      <footer class="footer">
         <p>
           © 2023 All Rights Reserved Terms of Use and Privacy Policy. PizzaWind
         </p>
