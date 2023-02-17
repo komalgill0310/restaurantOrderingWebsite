@@ -1,20 +1,35 @@
 import { menuArray } from "/data.js";
 import { imagesObj } from "./imageObj.js";
 
-init();
+let imagesInterval;
 let orderedItems = [];
 
-function getRandomImagesLink(typeOfImg) {
-  const imgMenuItems = document.querySelector(".header-img");
-  const randomNum = Math.floor(Math.random() * imagesObj[typeOfImg].length);
-  imgMenuItems.src = imagesObj[typeOfImg][randomNum];
-}
+const header = document.querySelector(".header");
+const headerImg = document.querySelector(".header-img");
+const backBtn = document.querySelector(".back-btn");
+const initialMenuState = document.querySelector(".initial-menu-state");
+const activeMenuSection = document.querySelector(".active-menu-section");
+const menuItems = document.getElementById("menu-items");
+const preCheckoutState = document.querySelector(".pre-checkout-state");
+const cartPriceDiv = document.querySelector(".cart-price-div");
+const subTotal = document.getElementById("sub-total");
+const hst = document.getElementById("hst");
+const totalPrice = document.getElementById("total-price");
+const completeOrder = document.querySelector(".complete-order");
+const cartIconSection = document.querySelector(".cart-icon-section");
+const cartItemsSubTotal = document.getElementById("cart-items-sub-total");
+const cartTotalObjects = document.getElementById("cart-total-objects");
+const checkoutPaymentModalState = document.querySelector(
+  ".checkout-payment-modal-state"
+);
+const orderOnTheWayText = document.getElementById("order-on-the-way-text");
+
+init();
 
 function init() {
   document.addEventListener("click", (e) => {
     e.preventDefault();
     if (e.target.dataset.burgers) {
-      console.log("clicked Burgers");
       renderMenu(e.target.dataset.burgers);
     }
     if (e.target.dataset.sides) {
@@ -33,15 +48,13 @@ function init() {
       handleRemoveItemClick(e.target.id);
     }
     if (e.target.dataset.completeOrder) {
-      document.querySelector(".checkout-payment-modal-state").style.display =
-        "block";
+      checkoutPaymentModalState.style.display = "block";
     }
     if (
       !e.target.closest(".checkout-payment-modal-state") &&
       !e.target.closest(".complete-order-btn")
     ) {
-      document.querySelector(".checkout-payment-modal-state").style.display =
-        "none";
+      checkoutPaymentModalState.style.display = "none";
     }
     if (e.target.dataset.pay) {
       displayMessage();
@@ -60,10 +73,9 @@ function init() {
 
 function setHtmlContentForTotalPrice() {
   const price = getTotalPrice();
-  console.log(price);
-  document.getElementById("sub-total").textContent = `$${price.subTotal}`;
-  document.getElementById("hst").textContent = `$${price.hst}`;
-  document.getElementById("total-price").textContent = `$${price.totalPrice}`;
+  subTotal.textContent = `$${price.subTotal}`;
+  hst.textContent = `$${price.hst}`;
+  totalPrice.textContent = `$${price.totalPrice}`;
 }
 
 function getTotalPrice() {
@@ -81,11 +93,9 @@ function getTotalPrice() {
   };
 }
 
-let imagesInterval;
-
 function renderMenu(typeOfFood) {
   getRandomImagesLink(typeOfFood);
-  document.getElementById("menu-items").innerHTML = getMenuItems(typeOfFood);
+  menuItems.innerHTML = getMenuItems(typeOfFood);
   imagesInterval = setInterval(getRandomImagesLink, 3000, typeOfFood);
 }
 
@@ -103,9 +113,6 @@ function handleRemoveItemClick(deleteBtnId) {
 //UPDATES THE ORDEREDITEMS ARRAY WHEN AN ELEMENT GETS DELETED FROM THE DOM
 function deleteItemFromOrderedItemsArray(deleteBtnId) {
   for (let i = 0; i < orderedItems.length; i++) {
-    console.log(
-      `orderedItems[i].id is ${orderedItems[i].id} and deleteBtnId is ${deleteBtnId}`
-    );
     if (orderedItems[i].id === deleteBtnId) {
       orderedItems.splice(i, 1);
       break;
@@ -124,48 +131,45 @@ function changeDisplayPropertyOfHtmlElements(
   pay
 ) {
   if (burgerMenu || sidesMenu || drinksMenu || pizzaMenu) {
-    document.querySelector(".back-btn").style.display = "block";
-    document.querySelector(".active-menu-section").style.display = "block";
-    document.querySelector(".initial-menu-state").style.display = "none";
+    backBtn.style.display = "block";
+    activeMenuSection.style.display = "block";
+    initialMenuState.style.display = "none";
   }
   if (homePage) {
-    document.querySelector(".back-btn").style.display = "none";
-    document.querySelector(".pre-checkout-state").style.display = "none";
-    document.querySelector(".active-menu-section").style.display = "none";
-    document.querySelector(".initial-menu-state").style.display = "block";
-    document.querySelector(".cart-icon-section").style.display = "block";
-    document.querySelector(".header").style.display = "block";
-    document.querySelector(".header-img").src = "images/headerImage.avif";
+    backBtn.style.display = "none";
+    preCheckoutState.style.display = "none";
+    activeMenuSection.style.display = "none";
+    initialMenuState.style.display = "block";
+    cartIconSection.style.display = "block";
+    header.style.display = "block";
+    headerImg.src = "images/headerImage.avif";
     clearInterval(imagesInterval);
   }
   if (!orderedItems.length) {
-    document.querySelector(".cart-icon-section").style.display = "none";
-    document.querySelector(".cart-price-div").style.display = "none";
-    document.querySelector(".complete-order").style.display = "none";
+    cartIconSection.style.display = "none";
+    cartPriceDiv.style.display = "none";
+    completeOrder.style.display = "none";
   }
 
   if (!pay && orderedItems.length) {
-    document.querySelector(".cart-icon-section").style.display = "block";
-    document.querySelector(".cart-price-div").style.display = "block";
-    document.querySelector(".complete-order").style.display = "block";
-    document.getElementById("cart-total-objects").textContent =
-      orderedItems.length;
-    document.getElementById("cart-items-sub-total").textContent = `$${
-      getTotalPrice().subTotal
-    }`;
+    cartIconSection.style.display = "block";
+    cartPriceDiv.style.display = "block";
+    completeOrder.style.display = "block";
+    cartTotalObjects.textContent = orderedItems.length;
+    cartItemsSubTotal.textContent = `$${getTotalPrice().subTotal}`;
   }
 
-  if (document.querySelector(".pre-checkout-state").style.display === "block") {
-    document.querySelector(".cart-icon-section").style.display = "none";
+  if (preCheckoutState.style.display === "block") {
+    cartIconSection.style.display = "none";
   }
 
   if (cartButton) {
-    document.querySelector(".back-btn").style.display = "none";
-    document.querySelector(".active-menu-section").style.display = "none";
-    document.querySelector(".initial-menu-state").style.display = "none";
-    document.querySelector(".pre-checkout-state").style.display = "block";
-    document.querySelector(".header").style.display = "none";
-    document.querySelector(".cart-icon-section").style.display = "none";
+    backBtn.style.display = "none";
+    activeMenuSection.style.display = "none";
+    initialMenuState.style.display = "none";
+    preCheckoutState.style.display = "block";
+    header.style.display = "none";
+    cartIconSection.style.display = "none";
   }
 }
 
@@ -174,14 +178,13 @@ function displayMessage() {
   if (msg) {
     alert(msg);
   } else {
-    document.querySelector(".pre-checkout-state").style.display = "none";
-    document.querySelector(".checkout-payment-modal-state").style.display =
-      "none";
-    document.querySelector(".cart-icon-section").style.display = "none";
-    document.querySelector(".header").style.display = "block";
-    document.querySelector(".header-img").src = "images/headerImage.avif";
+    preCheckoutState.style.display = "none";
+    checkoutPaymentModalState.style.display = "none";
+    cartIconSection.style.display = "none";
+    header.style.display = "block";
+    headerImg.src = "images/headerImage.avif";
     clearInterval(imagesInterval);
-    document.getElementById("order-on-the-way-text").textContent = `Thanks ${
+    orderOnTheWayText.textContent = `Thanks ${
       document.getElementById("name").value.split(" ")[0]
     }! Your order is on the way!`;
   }
@@ -201,9 +204,6 @@ function validateForm() {
   if (!cvv) {
     errorMessage += "CVV is required.\n";
   }
-  // if (cardNumber.length > 15) {
-  //   errorMessage += "Please enter Valid card number.\n";
-  // }
   return errorMessage;
 }
 
@@ -247,7 +247,6 @@ function getMenuItemsHtml(menuId) {
   return cartItemHtml;
 }
 
-//Pushing the items into an array
 function getOrderedItems(menuId) {
   const menu = menuArray.filter((menu) => menu.id === menuId);
   let orderItem = {
@@ -261,4 +260,10 @@ function getOrderedItems(menuId) {
 
 function filterMenuItems(typeOfFood) {
   return menuArray.filter((item) => item.type === typeOfFood);
+}
+
+function getRandomImagesLink(typeOfImg) {
+  const imgMenuItems = document.querySelector(".header-img");
+  const randomNum = Math.floor(Math.random() * imagesObj[typeOfImg].length);
+  imgMenuItems.src = imagesObj[typeOfImg][randomNum];
 }
