@@ -27,6 +27,10 @@ const orderOnTheWayText = document.getElementById("order-on-the-way-text");
 init();
 
 function init() {
+  handleClick();
+}
+
+function handleClick() {
   document.addEventListener("click", (e) => {
     e.preventDefault();
     if (e.target.dataset.burgers) {
@@ -59,15 +63,7 @@ function init() {
     if (e.target.dataset.pay) {
       displayMessage();
     }
-    changeDisplayPropertyOfHtmlElements(
-      e.target.dataset.burgers,
-      e.target.dataset.sides,
-      e.target.dataset.drinks,
-      e.target.dataset.pizza,
-      e.target.dataset.homePage,
-      e.target.dataset.cartIcon,
-      e.target.dataset.pay
-    );
+    updateDisplayPropOfHtmlElements(e);
   });
 }
 
@@ -121,56 +117,85 @@ function deleteItemFromOrderedItemsArray(deleteBtnId) {
   return orderedItems;
 }
 
-function changeDisplayPropertyOfHtmlElements(
-  burgerMenu,
-  sidesMenu,
-  drinksMenu,
-  pizzaMenu,
-  homePage,
-  cartButton,
-  pay
-) {
-  if (burgerMenu || sidesMenu || drinksMenu || pizzaMenu) {
-    backBtn.style.display = "block";
-    activeMenuSection.style.display = "block";
-    initialMenuState.style.display = "none";
+function updateDisplayPropOfHtmlElements(e) {
+  if (
+    e.target.dataset.burgers ||
+    e.target.dataset.sides ||
+    e.target.dataset.drinks ||
+    e.target.dataset.pizza
+  ) {
+    handleMenuSectionClick();
   }
-  if (homePage) {
-    backBtn.style.display = "none";
-    preCheckoutState.style.display = "none";
-    activeMenuSection.style.display = "none";
-    initialMenuState.style.display = "block";
-    cartIconSection.style.display = "block";
-    header.style.display = "block";
-    headerImg.src = "images/headerImage.avif";
-    clearInterval(imagesInterval);
+  if (e.target.dataset.homePage) {
+    handleAddMoreBtnBackBtnClick();
+    updateHeaderImageSrc();
+    clearImagesInterval(imagesInterval);
   }
   if (!orderedItems.length) {
-    cartIconSection.style.display = "none";
-    cartPriceDiv.style.display = "none";
-    completeOrder.style.display = "none";
+    handleEmptyCart();
   }
 
-  if (!pay && orderedItems.length) {
-    cartIconSection.style.display = "block";
-    cartPriceDiv.style.display = "block";
-    completeOrder.style.display = "block";
-    cartTotalObjects.textContent = orderedItems.length;
-    cartItemsSubTotal.textContent = `$${getTotalPrice().subTotal}`;
+  if (!e.target.closest(".pre-checkout-state") && orderedItems.length) {
+    handleFilledCart();
   }
 
-  if (preCheckoutState.style.display === "block") {
-    cartIconSection.style.display = "none";
+  if (e.target.dataset.cartIcon) {
+    handleCartIconClick();
   }
 
-  if (cartButton) {
-    backBtn.style.display = "none";
-    activeMenuSection.style.display = "none";
-    initialMenuState.style.display = "none";
-    preCheckoutState.style.display = "block";
-    header.style.display = "none";
+  if (
+    checkoutPaymentModalState.style.display === "none" &&
+    preCheckoutState.style.display === "block"
+  ) {
+    console.log("hey testing!");
     cartIconSection.style.display = "none";
   }
+}
+
+function handleMenuSectionClick() {
+  initialMenuState.style.display = "none";
+  backBtn.style.display = "block";
+  activeMenuSection.style.display = "block";
+}
+
+function handleAddMoreBtnBackBtnClick() {
+  backBtn.style.display = "none";
+  preCheckoutState.style.display = "none";
+  activeMenuSection.style.display = "none";
+  initialMenuState.style.display = "block";
+  cartIconSection.style.display = "block";
+  header.style.display = "block";
+}
+
+function handleEmptyCart() {
+  cartIconSection.style.display = "none";
+  cartPriceDiv.style.display = "none";
+  completeOrder.style.display = "none";
+}
+
+function handleFilledCart() {
+  cartIconSection.style.display = "block";
+  cartPriceDiv.style.display = "block";
+  completeOrder.style.display = "block";
+  cartTotalObjects.textContent = orderedItems.length;
+  cartItemsSubTotal.textContent = `$${getTotalPrice().subTotal}`;
+}
+
+function updateHeaderImageSrc() {
+  headerImg.src = "images/headerImage.avif";
+}
+
+function clearImagesInterval(imagesInterval) {
+  clearInterval(imagesInterval);
+}
+
+function handleCartIconClick() {
+  backBtn.style.display = "none";
+  cartIconSection.style.display = "none";
+  activeMenuSection.style.display = "none";
+  initialMenuState.style.display = "none";
+  preCheckoutState.style.display = "block";
+  header.style.display = "none";
 }
 
 function displayMessage() {
@@ -178,12 +203,12 @@ function displayMessage() {
   if (msg) {
     alert(msg);
   } else {
+    cartIconSection.style.display = "none";
     preCheckoutState.style.display = "none";
     checkoutPaymentModalState.style.display = "none";
-    cartIconSection.style.display = "none";
     header.style.display = "block";
-    headerImg.src = "images/headerImage.avif";
-    clearInterval(imagesInterval);
+    updateHeaderImageSrc();
+    clearImagesInterval(imagesInterval);
     orderOnTheWayText.textContent = `Thanks ${
       document.getElementById("name").value.split(" ")[0]
     }! Your order is on the way!`;

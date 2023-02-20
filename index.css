@@ -58,6 +58,9 @@ body {
   margin-left: 21px;
 }
 
+.cart-icon-section {
+  display: none;
+}
 .cart-items-sub-total {
   top: -23px;
   left: 28px;
@@ -143,6 +146,10 @@ input[type="text"] {
   color: #00d2f3;
   text-shadow: -3px 2px #0a0a0a;
   overflow-wrap: break-word;
+}
+
+.menu-item-info:hover {
+  opacity: 0.5;
 }
 
 .product {
@@ -379,9 +386,9 @@ input[type="text"],
   display: none;
 }
 
-.display-block {
+/* .display-block {
   display: block;
-}
+} */
 
 /* mix properties */
 
@@ -418,6 +425,7 @@ input[type="text"],
 .pre-checkout-state {
   margin: 17px;
   padding: 13px;
+  display: none;
 }
 
 .cart-price-div {
@@ -447,6 +455,7 @@ input[type="text"],
   background-color: #ffffff;
   filter: drop-shadow(5.18654px 5.18654px 255.437px rgba(0, 0, 0, 0.5));
   border-radius: 5px;
+  display: none;
 }
 
 .order-on-the-way-text {
