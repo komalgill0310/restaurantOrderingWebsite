@@ -9,18 +9,21 @@ const headerImg = document.querySelector(".header-img");
 const backBtn = document.querySelector(".back-btn");
 const initialMenuState = document.querySelector(".initial-menu-state");
 const activeMenuSection = document.querySelector(".active-menu-section");
-const menuItems = document.getElementById("menu-items");
 const preCheckoutState = document.querySelector(".pre-checkout-state");
 const cartPriceDiv = document.querySelector(".cart-price-div");
+const completeOrder = document.querySelector(".complete-order");
+const cartIconSection = document.querySelector(".cart-icon-section");
+const checkoutPaymentModalState = document.querySelector(
+  ".checkout-payment-modal-state"
+);
+
+const menuItems = document.getElementById("menu-items");
 const subTotal = document.getElementById("sub-total");
 const hst = document.getElementById("hst");
 const totalPrice = document.getElementById("total-price");
-const completeOrder = document.querySelector(".complete-order");
-const cartIconSection = document.querySelector(".cart-icon-section");
 const cartItemsSubTotal = document.getElementById("cart-items-sub-total");
-const cartTotalObjects = document.getElementById("cart-total-objects");
-const checkoutPaymentModalState = document.querySelector(
-  ".checkout-payment-modal-state"
+const totalNumberOfItemsInCart = document.getElementById(
+  "total-number-of-items-in-cart"
 );
 const orderOnTheWayText = document.getElementById("order-on-the-way-text");
 
@@ -58,12 +61,12 @@ function handleClick() {
       !e.target.closest(".checkout-payment-modal-state") &&
       !e.target.closest(".complete-order-btn")
     ) {
-      hidePaymentModalStateOnPreCheckoutPageClick();
+      hidePaymentModalOnPreCheckoutPageClick();
     }
     if (e.target.dataset.pay) {
-      displayMessage();
+      processPaymentFormSubmission();
     }
-    updateDisplayPropOfHtmlElements(e);
+    updateHtmlElementsDisplayProperty(e);
   });
 }
 
@@ -75,41 +78,49 @@ function renderMenu(typeOfFood) {
 
 function handleAddItemClick(menuId) {
   renderOrderedItems(menuId);
-  setHtmlContentForTotalPrice();
+  updatePriceTextContent();
 }
 
 function handleRemoveItemClick(deleteBtnId) {
-  deleteElementFromDom(deleteBtnId);
-  deleteItemFromOrderedItemsArray(deleteBtnId);
-  setHtmlContentForTotalPrice();
+  removeChildFromParentElement(deleteBtnId);
+  removeItemAndUpdateOrderedItemsArray(deleteBtnId);
+  updatePriceTextContent();
 }
 
 function handleCompleteOrderBtnclick() {
   checkoutPaymentModalState.style.display = "block";
 }
 
-function hidePaymentModalStateOnPreCheckoutPageClick() {
+function hidePaymentModalOnPreCheckoutPageClick() {
   checkoutPaymentModalState.style.display = "none";
 }
 
-function displayMessage() {
-  const msg = validateForm();
+function processPaymentFormSubmission() {
+  const msg = validatePaymentForm();
   if (msg) {
     alert(msg);
   } else {
+    updateHeaderImageSrc();
+    clearImagesInterval(imagesInterval);
+    hideCartAndPaymentElements();
+    setOrderConfirmationText();
+  }
+
+  function hideCartAndPaymentElements() {
     cartIconSection.style.display = "none";
     preCheckoutState.style.display = "none";
     checkoutPaymentModalState.style.display = "none";
     header.style.display = "block";
-    updateHeaderImageSrc();
-    clearImagesInterval(imagesInterval);
+  }
+
+  function setOrderConfirmationText() {
     orderOnTheWayText.textContent = `Thanks ${
       document.getElementById("name").value.split(" ")[0]
     }! Your order is on the way!`;
   }
 }
 
-function updateDisplayPropOfHtmlElements(e) {
+function updateHtmlElementsDisplayProperty(e) {
   if (
     e.target.dataset.burgers ||
     e.target.dataset.sides ||
@@ -163,18 +174,18 @@ function renderOrderedItems(menuId) {
   document.getElementById("cart-items").innerHTML += getMenuItemsHtml(menuId);
 }
 
-function setHtmlContentForTotalPrice() {
-  const price = getTotalPrice();
+function updatePriceTextContent() {
+  const price = getPrice();
   subTotal.textContent = `$${price.subTotal}`;
   hst.textContent = `$${price.hst}`;
   totalPrice.textContent = `$${price.totalPrice}`;
 }
 
-function deleteElementFromDom(deleteBtnId) {
+function removeChildFromParentElement(deleteBtnId) {
   document.getElementById(deleteBtnId).parentElement.remove();
 }
 
-function deleteItemFromOrderedItemsArray(deleteBtnId) {
+function removeItemAndUpdateOrderedItemsArray(deleteBtnId) {
   for (let i = 0; i < orderedItems.length; i++) {
     if (orderedItems[i].id === deleteBtnId) {
       orderedItems.splice(i, 1);
@@ -184,7 +195,7 @@ function deleteItemFromOrderedItemsArray(deleteBtnId) {
   return orderedItems;
 }
 
-function validateForm() {
+function validatePaymentForm() {
   const name = document.getElementById("name").value;
   const cardNumber = document.getElementById("card-number").value;
   const cvv = document.getElementById("cvv").value;
@@ -234,8 +245,8 @@ function handleFilledCart() {
   cartIconSection.style.display = "block";
   cartPriceDiv.style.display = "block";
   completeOrder.style.display = "block";
-  cartTotalObjects.textContent = orderedItems.length;
-  cartItemsSubTotal.textContent = `$${getTotalPrice().subTotal}`;
+  totalNumberOfItemsInCart.textContent = orderedItems.length;
+  cartItemsSubTotal.textContent = `$${getPrice().subTotal}`;
 }
 
 function handleCartIconClick() {
@@ -273,7 +284,7 @@ function getMenuItemsHtml(menuId) {
   return cartItemHtml;
 }
 
-function getTotalPrice() {
+function getPrice() {
   const subTotal = orderedItems.reduce(
     (totalPrice, itemPrice) => totalPrice + itemPrice.price,
     0

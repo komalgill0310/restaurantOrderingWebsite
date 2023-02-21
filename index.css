@@ -206,7 +206,7 @@ input[type="text"] {
   font-size: 31px;
 }
 
-.cart-total-objects,
+.total-number-of-items-in-cart,
 .cart-items-sub-total {
   color: whitesmoke;
 }
@@ -234,7 +234,7 @@ input[type="text"] {
   font-size: 21px;
 }
 
-.cart-total-objects,
+.total-number-of-items-in-cart,
 .cart-items-sub-total,
 .footer {
   background-color: black;
@@ -276,7 +276,7 @@ input[type="text"] {
 .online-order-btn,
 .your-order-text,
 .fa-backward,
-.cart-total-objects,
+.total-number-of-items-in-cart,
 .cart-items-sub-total,
 input[type="text"],
 .footer {
@@ -434,7 +434,7 @@ input[type="text"],
   padding-top: 17px;
 }
 
-.cart-total-objects {
+.total-number-of-items-in-cart {
   font-size: 25px;
   top: 47px;
   left: 67px;
