@@ -52,41 +52,19 @@ function handleClick() {
       handleRemoveItemClick(e.target.id);
     }
     if (e.target.dataset.completeOrder) {
-      checkoutPaymentModalState.style.display = "block";
+      handleCompleteOrderBtnclick();
     }
     if (
       !e.target.closest(".checkout-payment-modal-state") &&
       !e.target.closest(".complete-order-btn")
     ) {
-      checkoutPaymentModalState.style.display = "none";
+      hidePaymentModalStateOnPreCheckoutPageClick();
     }
     if (e.target.dataset.pay) {
       displayMessage();
     }
     updateDisplayPropOfHtmlElements(e);
   });
-}
-
-function setHtmlContentForTotalPrice() {
-  const price = getTotalPrice();
-  subTotal.textContent = `$${price.subTotal}`;
-  hst.textContent = `$${price.hst}`;
-  totalPrice.textContent = `$${price.totalPrice}`;
-}
-
-function getTotalPrice() {
-  const subTotal = orderedItems.reduce(
-    (totalPrice, itemPrice) => totalPrice + itemPrice.price,
-    0
-  );
-  const subTotalFixDecimalValue = +subTotal.toFixed(2);
-  const hst = +(subTotalFixDecimalValue * 0.13).toFixed(2);
-  const totalPrice = (subTotalFixDecimalValue + hst).toFixed(2);
-  return {
-    subTotal: subTotalFixDecimalValue,
-    hst: hst,
-    totalPrice: totalPrice,
-  };
 }
 
 function renderMenu(typeOfFood) {
@@ -106,15 +84,29 @@ function handleRemoveItemClick(deleteBtnId) {
   setHtmlContentForTotalPrice();
 }
 
-//UPDATES THE ORDEREDITEMS ARRAY WHEN AN ELEMENT GETS DELETED FROM THE DOM
-function deleteItemFromOrderedItemsArray(deleteBtnId) {
-  for (let i = 0; i < orderedItems.length; i++) {
-    if (orderedItems[i].id === deleteBtnId) {
-      orderedItems.splice(i, 1);
-      break;
-    }
+function handleCompleteOrderBtnclick() {
+  checkoutPaymentModalState.style.display = "block";
+}
+
+function hidePaymentModalStateOnPreCheckoutPageClick() {
+  checkoutPaymentModalState.style.display = "none";
+}
+
+function displayMessage() {
+  const msg = validateForm();
+  if (msg) {
+    alert(msg);
+  } else {
+    cartIconSection.style.display = "none";
+    preCheckoutState.style.display = "none";
+    checkoutPaymentModalState.style.display = "none";
+    header.style.display = "block";
+    updateHeaderImageSrc();
+    clearImagesInterval(imagesInterval);
+    orderOnTheWayText.textContent = `Thanks ${
+      document.getElementById("name").value.split(" ")[0]
+    }! Your order is on the way!`;
   }
-  return orderedItems;
 }
 
 function updateDisplayPropOfHtmlElements(e) {
@@ -126,30 +118,95 @@ function updateDisplayPropOfHtmlElements(e) {
   ) {
     handleMenuSectionClick();
   }
+
   if (e.target.dataset.homePage) {
-    handleAddMoreBtnBackBtnClick();
     updateHeaderImageSrc();
+    handleAddMoreBtnBackBtnClick();
     clearImagesInterval(imagesInterval);
   }
+
   if (!orderedItems.length) {
     handleEmptyCart();
-  }
-
-  if (!e.target.closest(".pre-checkout-state") && orderedItems.length) {
-    handleFilledCart();
   }
 
   if (e.target.dataset.cartIcon) {
     handleCartIconClick();
   }
 
-  if (
-    checkoutPaymentModalState.style.display === "none" &&
-    preCheckoutState.style.display === "block"
-  ) {
-    console.log("hey testing!");
-    cartIconSection.style.display = "none";
+  setDisplayForCartIconSection();
+}
+
+function getRandomImagesLink(typeOfImg) {
+  const imgMenuItems = document.querySelector(".header-img");
+  const randomNum = Math.floor(Math.random() * imagesObj[typeOfImg].length);
+  imgMenuItems.src = imagesObj[typeOfImg][randomNum];
+}
+
+function getMenuItems(type) {
+  let menuItemHtml = "";
+  filterMenuItems(type).forEach((menuItem) => {
+    menuItemHtml += `
+      <div class="menu-item-info"> 
+        <h1 class="menu-item-name">${menuItem.name}</h1>
+        <p class="menu-item-ingredients">${menuItem.ingredients}</p>
+        <p class="menu-item-price">$${menuItem.price}</p>
+        <div class="add-to-cart-btn">
+        <button class="online-order-btn cursor-pointer" data-add="${menuItem.id}">Online Order</button>
+      </div>
+      </div>
+`;
+  });
+  return menuItemHtml;
+}
+
+function renderOrderedItems(menuId) {
+  document.getElementById("cart-items").innerHTML += getMenuItemsHtml(menuId);
+}
+
+function setHtmlContentForTotalPrice() {
+  const price = getTotalPrice();
+  subTotal.textContent = `$${price.subTotal}`;
+  hst.textContent = `$${price.hst}`;
+  totalPrice.textContent = `$${price.totalPrice}`;
+}
+
+function deleteElementFromDom(deleteBtnId) {
+  document.getElementById(deleteBtnId).parentElement.remove();
+}
+
+function deleteItemFromOrderedItemsArray(deleteBtnId) {
+  for (let i = 0; i < orderedItems.length; i++) {
+    if (orderedItems[i].id === deleteBtnId) {
+      orderedItems.splice(i, 1);
+      break;
+    }
   }
+  return orderedItems;
+}
+
+function validateForm() {
+  const name = document.getElementById("name").value;
+  const cardNumber = document.getElementById("card-number").value;
+  const cvv = document.getElementById("cvv").value;
+  let errorMessage = "";
+  if (!name) {
+    errorMessage += "Name is required.\n";
+  }
+  if (!cardNumber) {
+    errorMessage += "Card Number is required.\n";
+  }
+  if (!cvv) {
+    errorMessage += "CVV is required.\n";
+  }
+  return errorMessage;
+}
+
+function updateHeaderImageSrc() {
+  headerImg.src = "images/headerImage.avif";
+}
+
+function clearImagesInterval(imagesInterval) {
+  clearInterval(imagesInterval);
 }
 
 function handleMenuSectionClick() {
@@ -181,87 +238,31 @@ function handleFilledCart() {
   cartItemsSubTotal.textContent = `$${getTotalPrice().subTotal}`;
 }
 
-function updateHeaderImageSrc() {
-  headerImg.src = "images/headerImage.avif";
-}
-
-function clearImagesInterval(imagesInterval) {
-  clearInterval(imagesInterval);
-}
-
 function handleCartIconClick() {
+  header.style.display = "none";
   backBtn.style.display = "none";
   cartIconSection.style.display = "none";
   activeMenuSection.style.display = "none";
   initialMenuState.style.display = "none";
   preCheckoutState.style.display = "block";
-  header.style.display = "none";
 }
 
-function displayMessage() {
-  const msg = validateForm();
-  if (msg) {
-    alert(msg);
+function setDisplayForCartIconSection() {
+  if (
+    (initialMenuState.style.display === "block" ||
+      activeMenuSection.style.display === "block") &&
+    orderedItems.length
+  ) {
+    handleFilledCart();
   } else {
     cartIconSection.style.display = "none";
-    preCheckoutState.style.display = "none";
-    checkoutPaymentModalState.style.display = "none";
-    header.style.display = "block";
-    updateHeaderImageSrc();
-    clearImagesInterval(imagesInterval);
-    orderOnTheWayText.textContent = `Thanks ${
-      document.getElementById("name").value.split(" ")[0]
-    }! Your order is on the way!`;
   }
-}
-
-function validateForm() {
-  const name = document.getElementById("name").value;
-  const cardNumber = document.getElementById("card-number").value;
-  const cvv = document.getElementById("cvv").value;
-  let errorMessage = "";
-  if (!name) {
-    errorMessage += "Name is required.\n";
-  }
-  if (!cardNumber) {
-    errorMessage += "Card Number is required.\n";
-  }
-  if (!cvv) {
-    errorMessage += "CVV is required.\n";
-  }
-  return errorMessage;
-}
-
-function getMenuItems(type) {
-  let menuItemHtml = "";
-  filterMenuItems(type).forEach((menuItem) => {
-    menuItemHtml += `
-      <div class="menu-item-info"> 
-        <h1 class="menu-item-name">${menuItem.name}</h1>
-        <p class="menu-item-ingredients">${menuItem.ingredients}</p>
-        <p class="menu-item-price">$${menuItem.price}</p>
-        <div class="add-to-cart-btn">
-        <button class="online-order-btn cursor-pointer" data-add="${menuItem.id}">Online Order</button>
-      </div>
-      </div>
-`;
-  });
-  return menuItemHtml;
-}
-
-function renderOrderedItems(menuId) {
-  document.getElementById("cart-items").innerHTML += getMenuItemsHtml(menuId);
-}
-
-function deleteElementFromDom(deleteBtnId) {
-  document.getElementById(deleteBtnId).parentElement.remove();
 }
 
 function getMenuItemsHtml(menuId) {
   let cartItemHtml = "";
   const cartItemsArray = getOrderedItems(menuId);
   cartItemsArray.forEach((cartItem) => {
-    console.log(`cartItem: ${cartItem.id}`);
     cartItemHtml = `
       <div class="cart-item display-flex">
         <p class="cart-item-name">${cartItem.name}</p>
@@ -270,6 +271,21 @@ function getMenuItemsHtml(menuId) {
       </div>`;
   });
   return cartItemHtml;
+}
+
+function getTotalPrice() {
+  const subTotal = orderedItems.reduce(
+    (totalPrice, itemPrice) => totalPrice + itemPrice.price,
+    0
+  );
+  const subTotalFixDecimalValue = +subTotal.toFixed(2);
+  const hst = +(subTotalFixDecimalValue * 0.13).toFixed(2);
+  const totalPrice = (subTotalFixDecimalValue + hst).toFixed(2);
+  return {
+    subTotal: subTotalFixDecimalValue,
+    hst: hst,
+    totalPrice: totalPrice,
+  };
 }
 
 function getOrderedItems(menuId) {
@@ -285,10 +301,4 @@ function getOrderedItems(menuId) {
 
 function filterMenuItems(typeOfFood) {
   return menuArray.filter((item) => item.type === typeOfFood);
-}
-
-function getRandomImagesLink(typeOfImg) {
-  const imgMenuItems = document.querySelector(".header-img");
-  const randomNum = Math.floor(Math.random() * imagesObj[typeOfImg].length);
-  imgMenuItems.src = imagesObj[typeOfImg][randomNum];
 }
