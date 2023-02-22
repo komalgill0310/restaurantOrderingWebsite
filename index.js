@@ -105,19 +105,6 @@ function processPaymentFormSubmission() {
     hideCartAndPaymentElements();
     setOrderConfirmationText();
   }
-
-  function hideCartAndPaymentElements() {
-    cartIconSection.style.display = "none";
-    preCheckoutState.style.display = "none";
-    checkoutPaymentModalState.style.display = "none";
-    header.style.display = "block";
-  }
-
-  function setOrderConfirmationText() {
-    orderOnTheWayText.textContent = `Thanks ${
-      document.getElementById("name").value.split(" ")[0]
-    }! Your order is on the way!`;
-  }
 }
 
 function updateHtmlElementsDisplayProperty(e) {
@@ -176,13 +163,6 @@ function renderOrderedItems(menuId) {
   document.getElementById("cart-items").innerHTML += getMenuItemsHtml(menuId);
 }
 
-function updatePriceTextContent() {
-  const price = getPrice();
-  subTotal.textContent = `$${price.subTotal}`;
-  hst.textContent = `$${price.hst}`;
-  totalPrice.textContent = `$${price.totalPrice}`;
-}
-
 function removeChildFromParentElement(deleteBtnId) {
   document.getElementById(deleteBtnId).parentElement.remove();
 }
@@ -195,6 +175,13 @@ function removeItemAndUpdateOrderedItemsArray(deleteBtnId) {
     }
   }
   return orderedItems;
+}
+
+function updatePriceTextContent() {
+  const price = getPrice();
+  subTotal.textContent = `$${price.subTotal}`;
+  hst.textContent = `$${price.hst}`;
+  totalPrice.textContent = `$${price.totalPrice}`;
 }
 
 function validatePaymentForm() {
@@ -222,6 +209,19 @@ function clearImagesInterval(imagesInterval) {
   clearInterval(imagesInterval);
 }
 
+function hideCartAndPaymentElements() {
+  cartIconSection.style.display = "none";
+  preCheckoutState.style.display = "none";
+  checkoutPaymentModalState.style.display = "none";
+  header.style.display = "block";
+}
+
+function setOrderConfirmationText() {
+  orderOnTheWayText.textContent = `Thanks ${
+    document.getElementById("name").value.split(" ")[0]
+  }! Your order is on the way!`;
+}
+
 function handleMenuSectionClick() {
   initialMenuState.style.display = "none";
   backBtn.style.display = "block";
@@ -243,14 +243,6 @@ function handleEmptyCart() {
   completeOrder.style.display = "none";
 }
 
-function handleFilledCart() {
-  cartIconSection.style.display = "block";
-  cartPriceDiv.style.display = "block";
-  completeOrder.style.display = "block";
-  totalNumberOfItemsInCart.textContent = orderedItems.length;
-  cartItemsSubTotal.textContent = `$${getPrice().subTotal}`;
-}
-
 function handleCartIconClick() {
   header.style.display = "none";
   backBtn.style.display = "none";
@@ -270,6 +262,10 @@ function setDisplayForCartIconSection() {
   } else {
     cartIconSection.style.display = "none";
   }
+}
+
+function filterMenuItems(typeOfFood) {
+  return foodMenu.filter((item) => item.type === typeOfFood);
 }
 
 function getMenuItemsHtml(menuId) {
@@ -312,6 +308,10 @@ function getOrderedItems(menuId) {
   return orderedItems;
 }
 
-function filterMenuItems(typeOfFood) {
-  return foodMenu.filter((item) => item.type === typeOfFood);
+function handleFilledCart() {
+  cartIconSection.style.display = "block";
+  cartPriceDiv.style.display = "block";
+  completeOrder.style.display = "block";
+  totalNumberOfItemsInCart.textContent = orderedItems.length;
+  cartItemsSubTotal.textContent = `$${getPrice().subTotal}`;
 }
