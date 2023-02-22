@@ -1,4 +1,4 @@
-export const imagesObj = {
+export const foodMenuSectionHeaderImages = {
   burgers: [
     "images/burgersImages/burger1.avif",
     "images/burgersImages/burger2.avif",

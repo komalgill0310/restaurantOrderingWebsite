@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 
-export const menuArray = [
+export const foodMenu = [
   {
     id: uuidv4(),
     price: 14.99,

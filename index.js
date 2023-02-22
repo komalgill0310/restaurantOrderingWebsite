@@ -1,5 +1,5 @@
-import { menuArray } from "/data.js";
-import { imagesObj } from "./imageObj.js";
+import { foodMenu } from "/foodMenu.js";
+import { foodMenuSectionHeaderImages } from "./foodMenuSectionHeaderImages.js";
 
 let imagesInterval;
 let orderedItems = [];
@@ -149,8 +149,10 @@ function updateHtmlElementsDisplayProperty(e) {
 
 function getRandomImagesLink(typeOfImg) {
   const imgMenuItems = document.querySelector(".header-img");
-  const randomNum = Math.floor(Math.random() * imagesObj[typeOfImg].length);
-  imgMenuItems.src = imagesObj[typeOfImg][randomNum];
+  const randomNum = Math.floor(
+    Math.random() * foodMenuSectionHeaderImages[typeOfImg].length
+  );
+  imgMenuItems.src = foodMenuSectionHeaderImages[typeOfImg][randomNum];
 }
 
 function getMenuItems(type) {
@@ -300,7 +302,7 @@ function getPrice() {
 }
 
 function getOrderedItems(menuId) {
-  const menu = menuArray.filter((menu) => menu.id === menuId);
+  const menu = foodMenu.filter((menu) => menu.id === menuId);
   let orderItem = {
     id: menu[0].id,
     name: menu[0].name,
@@ -311,5 +313,5 @@ function getOrderedItems(menuId) {
 }
 
 function filterMenuItems(typeOfFood) {
-  return menuArray.filter((item) => item.type === typeOfFood);
+  return foodMenu.filter((item) => item.type === typeOfFood);
 }
