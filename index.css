@@ -1,8 +1,9 @@
 html,
 body {
-  min-height: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -17,19 +18,18 @@ body {
   min-height: 100%;
   width: 100%;
   max-width: 1000px;
-  margin: 10px auto 0;
 }
 
 .content {
   flex: 1;
 }
 
-.header {
-  margin: 0 0 21px;
-}
-
 .store-address {
   margin-bottom: 17px;
+}
+
+.header {
+  margin: 0 0 21px 0;
 }
 
 #pizza-div {
@@ -86,9 +86,13 @@ body {
   flex-direction: column;
 }
 
+.header-img {
+  border-radius: 31%;
+}
+
 .header,
 .header-img {
-  height: 400px;
+  height: 450px;
 }
 
 .header-img,
@@ -132,6 +136,10 @@ body {
 .pay-btn,
 input[type="text"] {
   box-sizing: border-box;
+}
+
+.footer p {
+  padding: 21px 31px;
 }
 
 /* typography */
@@ -219,8 +227,7 @@ input[type="text"] {
 
 .menu-items,
 .online-order-btn,
-.fa-backward,
-.footer {
+.fa-backward {
   padding: 21px;
 }
 
@@ -415,7 +422,7 @@ input[type="text"],
   border-color: #f80808;
   border-style: solid;
   border-radius: 13px;
-  padding: 37px;
+  padding: 23px 13px;
   box-shadow: 0px 0px 10px #00000080;
   margin: 0 13px 31px;
   flex: 0 0 25rem;
@@ -424,12 +431,12 @@ input[type="text"],
 .menu-item-ingredients {
   color: gray;
   font-weight: 400;
-  margin-bottom: 47px;
+  margin-bottom: 21px;
   margin-top: 7px;
 }
 
 .pre-checkout-state {
-  margin: 17px;
+  /* margin: 17px; */
   padding: 13px;
   display: none;
 }
@@ -466,7 +473,7 @@ input[type="text"],
 
 .order-on-the-way-text {
   text-align: center;
-  margin-top: 61px;
+  margin: 61px 0;
   font-size: 37px;
   color: green;
   font-weight: 700;
