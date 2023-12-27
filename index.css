@@ -95,6 +95,12 @@ body {
   height: 450px;
 }
 
+footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
 .header-img,
 .footer,
 .complete-order-btn,
